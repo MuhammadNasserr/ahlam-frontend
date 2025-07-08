@@ -1,5 +1,4 @@
-import React from "react";
-import darkModeIcon from "/images/lightMood.webp";
+const darkModeIcon = "/images/lightMood.webp";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMoon } from "@fortawesome/free-regular-svg-icons";
 
