@@ -1,4 +1,3 @@
-import React from "react";
 import { Link } from "react-router-dom";
 const img1320 = "/images/img1-320.webp";
 const img1480 = "/images/img1-480.webp";
@@ -6,10 +5,6 @@ const img1768 = "/images/img1-768.webp";
 const img11024 = "/images/img1-1024.webp";
 const img11440 = "/images/img1-1440.webp";
 const img11920 = "/images/img1-1920.webp";
-// import img1 from "../../../images/img1-1920.webp"; // الصورة رقم 1
-import img2 from "/images/img2.webp"; // الصورة رقم 2
-import img3 from "/images/img3.webp"; // الصورة رقم 3
-import threedots from "/images/threedots.webp";
 import { useTranslation } from "../../contexts/TranslationContext";
 import Carousel from "react-bootstrap/Carousel";
 import Dropdown from "react-bootstrap/Dropdown";
@@ -39,7 +34,7 @@ export const HeaderSection = () => {
 
         <Carousel.Item>
           <img
-            src={img2}
+            src="/images/img2.webp"
             alt="Egypt's Finest Produce - Slide 2"
             className="d-block w-100 carousel-img"
             loading="lazy"
@@ -48,7 +43,7 @@ export const HeaderSection = () => {
 
         <Carousel.Item>
           <img
-            src={img3}
+            src="/images/img3.webp"
             alt="Egypt's Finest Produce - Slide 3"
             className="d-block w-100 carousel-img"
             loading="lazy"
@@ -91,7 +86,13 @@ export const HeaderSection = () => {
                 id="dropdown-get-started"
               >
                 {t("get_started_button", "Get Started")}
-                <img className="ms-2" width={4} height={15} src={threedots} alt="threedots-icon" />
+                <img
+                  className="ms-2"
+                  width={4}
+                  height={15}
+                  src="/images/threedots.webp"
+                  alt="threedots-icon"
+                />
               </Dropdown.Toggle>
 
               <Dropdown.Menu className="mt-2" style={{ backgroundColor: "var(--bg-color)" }}>

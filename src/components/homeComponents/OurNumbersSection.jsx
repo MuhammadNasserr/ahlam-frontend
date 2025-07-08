@@ -1,6 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
-import ournum from "/images/our-num.webp";
 import { Link } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
 import { useTranslation } from "../../contexts/TranslationContext";
@@ -94,7 +93,7 @@ export const OurNumbersSection = () => {
         className="our-icon trend-icon position-absolute"
         width="200"
         height="200"
-        src={ournum}
+        src="/images/our-num.webp"
         alt="our-num"
         loading="lazy"
       />

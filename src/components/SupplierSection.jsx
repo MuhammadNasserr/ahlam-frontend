@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from "react";
-import SupplierSectionImage from "/images/sup.webp";
 import Accordion from "react-bootstrap/Accordion";
 import { useTranslation } from "../contexts/TranslationContext";
 
@@ -112,7 +111,7 @@ const SupplierSection = () => {
               right: "0px",
               zIndex: -5,
             }}
-            src={SupplierSectionImage}
+            src="/images/sup.webp"
             alt="Decorative trend icon for suppliers"
             loading="lazy"
           />

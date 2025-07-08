@@ -1,5 +1,4 @@
 import { useLocation } from "react-router-dom";
-import img1 from "/images/productsHeroSection.webp"; // الصورة رقم 3
 import { useTranslation } from "../../contexts/TranslationContext";
 export const HeroSection = () => {
   const { t } = useTranslation();
@@ -11,7 +10,7 @@ export const HeroSection = () => {
   return (
     <div className="products-hero-section">
       <img
-        src={img1}
+        src="/images/productsHeroSection.webp"
         width="100%"
         height="100%"
         loading="eager"

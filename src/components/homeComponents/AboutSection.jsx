@@ -1,5 +1,4 @@
-import React from "react";
-import abouthome from "/images/About-home.webp";
+const abouthome = "/images/About-home.webp";
 
 // --- START: إضافة كود الترجمة ---
 import { useTranslation } from "../../contexts/TranslationContext";

@@ -1,6 +1,3 @@
-import React from "react";
-import Logo from "/images/logo.webp"; // Adjust the path to match your project structure
-
 import { useTranslation } from "../contexts/TranslationContext";
 
 const SupplierForm = ({ openModal, closeModal }) => {
@@ -66,7 +63,7 @@ const SupplierForm = ({ openModal, closeModal }) => {
       <div className="container py-5">
         <div className="card supplier-form-card text-center p-4 rounded-5">
           <img
-            src={Logo}
+            src="/images/logo.webp"
             alt="AHLAM Logo"
             width="90"
             height="60"
