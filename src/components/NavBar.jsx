@@ -1,7 +1,7 @@
 import { NavLink, useLocation } from "react-router-dom";
 import { useEffect } from "react";
-import logo from "/images/logo.webp";
-import logodark from "/images/logodark.webp";
+const logo = "/images/logo.webp";
+const logodark = "/images/logodark.webp";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { useTranslation } from "../contexts/TranslationContext";

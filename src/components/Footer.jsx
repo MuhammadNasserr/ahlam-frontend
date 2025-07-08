@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import logo from "/images/logo.webp";
-import darklogo from "/images/logodark.webp";
+const logo = "/images/logo.webp";
+const darklogo = "/images/logodark.webp";
 import React, { useState, Suspense, lazy } from "react";
 
 import { useTranslation } from "../contexts/TranslationContext";
