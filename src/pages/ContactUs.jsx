@@ -1,7 +1,6 @@
 import React, { lazy, Suspense, useState } from "react";
 import { GetInTouch } from "../components/contactCompoennts";
 import SendMessage from "../components/SendMessage";
-import MapImage from "/images/map.webp";
 import Modal from "../components/Modal";
 import { useTranslation } from "../contexts/TranslationContext";
 const Confirm = lazy(() => import("../components/Confirm"));
@@ -39,7 +38,7 @@ const ContactUs = () => {
               width: "100%",
               height: "300px",
             }}
-            src={MapImage}
+            src="/images/map.webp"
             alt=""
           />
         </a>
