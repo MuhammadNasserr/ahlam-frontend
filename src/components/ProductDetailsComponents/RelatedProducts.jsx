@@ -27,7 +27,13 @@ export const RelatedProducts = (props) => {
       </h3>
       <div className="row">
         {relatedProducts.map((product) => (
-          <div className="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-3 mb-4" key={product.id}>
+          <div
+            className="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-3 mb-4"
+            key={product.id}
+            style={{
+              opacity: `${product.is_available ? "1" : "0.65"}`,
+            }}
+          >
             <div className=" product-card-fetch h-100 shadow-sm p-2" data-aos="fade-up">
               <Link to={`/products/${product.id}`} className="d-block text-decoration-none">
                 <div className="position-relative mb-2">
@@ -80,6 +86,7 @@ export const RelatedProducts = (props) => {
                   openModal();
                 }}
                 className="btn w-100 my-2"
+                disabled={!product.is_available}
               >
                 {t("Quick Inquire", "Quick Inquire")}
               </button>

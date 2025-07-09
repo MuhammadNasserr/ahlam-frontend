@@ -76,30 +76,7 @@ export const ProductDetailsPage = ({ id }) => {
   if (isLoading) return <SkeletonEffect />;
 
   if (isError) {
-    return (
-      // <div className="container py-5 text-center">
-      //   <div
-      //     className="alert alert-danger d-flex flex-column align-items-center justify-content-center"
-      //     role="alert"
-      //   >
-      //     <p className="mb-2">
-      //       {t(
-      //         "failed_to_load_products",
-      //         "Failed to load products. Please try again.",
-      //       )}
-      //       <br />
-      //     </p>
-      //     <button
-      //       onClick={() => refetch()}
-      //       className="btn btn-sm btn-outline-danger"
-      //       disabled={isLoading}
-      //     >
-      //       <FontAwesomeIcon icon={faSyncAlt} /> {t("refresh", "Refresh")}
-      //     </button>
-      //   </div>
-      // </div>
-      <NotFound />
-    );
+    return <NotFound />;
   }
 
   return (
@@ -137,6 +114,7 @@ export const ProductDetailsPage = ({ id }) => {
         <div>
           <GetCustomQuote
             name={details?.name}
+            status={details?.is_available}
             openModal={openModal}
             closeModal={closeModal}
             message={t("Get_Custom_Quote", "Get a Custom Quote")}

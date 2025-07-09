@@ -53,7 +53,7 @@ const Calendar = () => {
           ))}
         </div>
       ) : isError ? (
-        <p className="text-danger">Failed to load month.</p>
+        <p className="text-danger">{t("Failed_load_month", "Failed to load month.")}</p>
       ) : (
         <div className="d-flex flex-wrap gap-3 align-items-center">
           {months.map((month) => (

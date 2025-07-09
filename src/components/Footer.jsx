@@ -122,6 +122,15 @@ const Footer = ({ isDark }) => {
           <span>{t("copyright_text", "Copyright © 2025 AHLAM")}</span>
           <Link to="/privacy">{t("privacy_policy_link", "Privacy Policy")}</Link>
         </div>
+        <div className="copy-right">
+          {t("Design_contact", "Design your ideal website with us.")}{" "}
+          <a
+            style={{ textDecoration: "underline", color: "blue" }}
+            href="mailto:betadevstudio@gmail.com"
+          >
+            {t("our_link", "Get started today!")}
+          </a>
+        </div>
         {/* Copyright */}
       </div>
 

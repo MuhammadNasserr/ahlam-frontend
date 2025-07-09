@@ -4,6 +4,8 @@ import { useQuery } from "@tanstack/react-query";
 import { useLocation, useNavigate } from "react-router-dom";
 import { fetchData } from "../../utilis/fetch";
 import { useTranslation } from "../../contexts/TranslationContext";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faSyncAlt } from "@fortawesome/free-solid-svg-icons"; // استيراد الأيقونة هنا
 
 import ProductCategoriesSidebar from "./ProductCategoriesSidebar";
 import ProductGrid from "./ProductGrid";
@@ -19,7 +21,7 @@ const FetchProducts = () => {
   const containerRef = useRef(null);
   const location = useLocation();
   const navigate = useNavigate();
-  const { locale } = useTranslation();
+  const { t, locale } = useTranslation(); // إضافة t هنا
 
   const initialCategoryCount = 8;
   const [showAllCategories, setShowAllCategories] = useState(false);
@@ -112,6 +114,16 @@ const FetchProducts = () => {
     staleTime: 0,
   });
 
+  // Determine if there's any error
+  const hasOverallError = categoriesError || productsError;
+  const isLoadingAnything = categoriesLoading || productsLoading;
+
+  // Function to refresh all data
+  const handleRefreshAll = () => {
+    refetchCategories();
+    refetchProducts();
+  };
+
   const selectedCategory = selectedCategoryId
     ? categories.find((cat) => cat.id === selectedCategoryId)
     : null;
@@ -147,29 +159,45 @@ const FetchProducts = () => {
         <Confirm />
       </Modal>
       <div className="container py-4" ref={containerRef}>
-        <div className="row">
-          <ProductCategoriesSidebar
-            categories={categories}
-            categoriesLoading={categoriesLoading}
-            categoriesError={categoriesError}
-            refetchCategories={refetchCategories}
-            selectedCategoryId={selectedCategoryId}
-            initialCategoryCount={initialCategoryCount}
-            showAllCategories={showAllCategories}
-            setShowAllCategories={setShowAllCategories}
-            onCategorySelect={handleCategorySelect}
-            onAllProductsSelect={handleAllProductsSelect}
-          />
+        {hasOverallError ? ( // عرض رسالة الخطأ وزر التحديث هنا
+          <div
+            className="alert alert-danger d-flex flex-column align-items-center justify-content-center text-center mx-auto"
+            role="alert"
+            style={{ maxWidth: "500px", padding: "20px" }}
+          >
+            <p className="mb-2 fs-5">
+              {t("error_loading_data", "Failed to load data. Please try again.")}
+            </p>
+            <button
+              onClick={handleRefreshAll}
+              className="btn btn-sm btn-outline-danger"
+              disabled={isLoadingAnything}
+            >
+              <FontAwesomeIcon icon={faSyncAlt} className={isLoadingAnything ? "fa-spin" : ""} />{" "}
+              {t("refresh", "Refresh")}
+            </button>
+          </div>
+        ) : (
+          <div className="row">
+            <ProductCategoriesSidebar
+              categories={categories}
+              categoriesLoading={categoriesLoading}
+              selectedCategoryId={selectedCategoryId}
+              initialCategoryCount={initialCategoryCount}
+              showAllCategories={showAllCategories}
+              setShowAllCategories={setShowAllCategories}
+              onCategorySelect={handleCategorySelect}
+              onAllProductsSelect={handleAllProductsSelect}
+            />
 
-          <ProductGrid
-            products={products}
-            productsLoading={productsLoading}
-            productsError={productsError}
-            refetchProducts={refetchProducts}
-            baseImageUrl={baseImageUrl}
-            onQuickInquire={handleQuickInquire}
-          />
-        </div>
+            <ProductGrid
+              products={products}
+              productsLoading={productsLoading}
+              baseImageUrl={baseImageUrl}
+              onQuickInquire={handleQuickInquire}
+            />
+          </div>
+        )}
       </div>
       {selectedCategoryId && <CategoryDescription selectedCategory={selectedCategory} />}
     </>

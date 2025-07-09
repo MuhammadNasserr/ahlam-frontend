@@ -4,7 +4,7 @@ const PomegranatesImage = "/images/Pomegranates.webp";
 const PotatoImage = "/images/Potato.webp";
 import { useTranslation } from "../contexts/TranslationContext";
 
-const GetCustomQuote = ({ name, openModal, closeModal, message }) => {
+const GetCustomQuote = ({ name, openModal, closeModal, message, status }) => {
   const { t } = useTranslation();
 
   const handleSubmit = async (e) => {
@@ -248,9 +248,10 @@ const GetCustomQuote = ({ name, openModal, closeModal, message }) => {
                 style={{
                   width: "250px",
                   maxWidth: "100%",
-                  backgroundColor: "var(--green-color)",
+                  backgroundColor: `${status ? "var(--green-color)" : "#aaa"}`,
                 }}
                 type="submit"
+                disabled={!status}
               >
                 {t("get_best_price", "Get Best Price")}
               </button>

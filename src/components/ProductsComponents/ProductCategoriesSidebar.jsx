@@ -1,14 +1,12 @@
 // src/components/ProductPage/ProductCategoriesSidebar.jsx
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronUp, faChevronRight, faSyncAlt } from "@fortawesome/free-solid-svg-icons";
+import { faChevronUp, faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { useTranslation } from "../../contexts/TranslationContext";
 
 const ProductCategoriesSidebar = ({
   categories,
   categoriesLoading,
-  categoriesError,
-  refetchCategories,
   selectedCategoryId,
   initialCategoryCount,
   showAllCategories,
@@ -60,19 +58,6 @@ const ProductCategoriesSidebar = ({
               <CategorySkeleton key={`cat-skeleton-${i}`} />
             ))}
         </ul>
-      ) : categoriesError ? (
-        <div
-          className="alert alert-danger mt-3 d-flex flex-column align-items-center justify-content-center text-center"
-          role="alert"
-        >
-          <p className="mb-2">
-            {t("error_loading_categories", "Failed to load categories. Please try again.")}
-          </p>
-          <button onClick={refetchCategories} className="btn btn-sm" disabled={categoriesLoading}>
-            <FontAwesomeIcon icon={faSyncAlt} className={categoriesLoading ? "fa-spin" : ""} />{" "}
-            {t("refresh", "Refresh")}
-          </button>
-        </div>
       ) : (
         <ul
           className="list-group cat-names-fetch flex-row flex-md-column flex-wrap flex-md-nowrap mt-3 mt-md-0"

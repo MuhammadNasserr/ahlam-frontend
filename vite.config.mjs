@@ -2,7 +2,6 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import { createHtmlPlugin } from "vite-plugin-html";
-import { visualizer } from "rollup-plugin-visualizer";
 let mainCssFileName = "";
 export default defineConfig({
   server: {
@@ -10,7 +9,7 @@ export default defineConfig({
     // أو ممكن تستخدم: host: true
     // port: 5173, // ده البورت اللي السيرفر هيشتغل عليه، ممكن يكون أي رقم تاني
   },
-  base: "./",
+  // base: "./",
   plugins: [
     react(),
     createHtmlPlugin({
@@ -32,7 +31,6 @@ export default defineConfig({
         ],
       },
     }),
-    visualizer({ open: true }),
   ],
   build: {
     cssCodeSplit: true,
@@ -40,11 +38,7 @@ export default defineConfig({
       output: {
         manualChunks: (id) => {
           if (id.includes("node_modules")) {
-            const moduleName = id
-              .toString()
-              .split("node_modules/")[1]
-              .split("/")[0]
-              .toString();
+            const moduleName = id.toString().split("node_modules/")[1].split("/")[0].toString();
 
             // المكتبات الأساسية اللي بنقسمها
             if (["react", "react-dom"].includes(moduleName)) {
@@ -113,7 +107,7 @@ export default defineConfig({
                   // مكان الحقن: ابحث عن </head> وأضف قبله (ليكون في الـ head)
                   indexHtmlAsset.source = indexHtmlAsset.source.replace(
                     "</head>",
-                    `${cssLinkTag}\n</head>`,
+                    `${cssLinkTag}\n</head>`
                   );
                 }
               }
