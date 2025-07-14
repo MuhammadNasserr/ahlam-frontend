@@ -1,10 +1,13 @@
 import { Link } from "react-router-dom";
-const img1320 = "/images/img1-320.webp";
-const img1480 = "/images/img1-480.webp";
-const img1768 = "/images/img1-768.webp";
-const img11024 = "/images/img1-1024.webp";
-const img11440 = "/images/img1-1440.webp";
-const img11920 = "/images/img1-1920.webp";
+import img1320 from "../../../Public/images/img1-320.webp";
+import img1480 from "../../../Public/images/img1-480.webp";
+import img1768 from "../../../Public/images/img1-768.webp";
+import img11024 from "../../../Public/images/img1-1024.webp";
+import img11440 from "../../../Public/images/img1-1440.webp";
+import img11920 from "../../../Public/images/img1-1920.webp";
+import img2 from "../../../Public/images/img2.webp";
+import img3 from "../../../Public/images/img3.webp";
+import threedots from "../../../Public/images/threedots.webp";
 import { useTranslation } from "../../contexts/TranslationContext";
 import Carousel from "react-bootstrap/Carousel";
 import Dropdown from "react-bootstrap/Dropdown";
@@ -34,7 +37,7 @@ export const HeaderSection = () => {
 
         <Carousel.Item>
           <img
-            src="/images/img2.webp"
+            src={img2}
             alt="Egypt's Finest Produce - Slide 2"
             className="d-block w-100 carousel-img"
             loading="lazy"
@@ -43,7 +46,7 @@ export const HeaderSection = () => {
 
         <Carousel.Item>
           <img
-            src="/images/img3.webp"
+            src={img3}
             alt="Egypt's Finest Produce - Slide 3"
             className="d-block w-100 carousel-img"
             loading="lazy"
@@ -86,13 +89,7 @@ export const HeaderSection = () => {
                 id="dropdown-get-started"
               >
                 {t("get_started_button", "Get Started")}
-                <img
-                  className="ms-2"
-                  width={4}
-                  height={15}
-                  src="/images/threedots.webp"
-                  alt="threedots-icon"
-                />
+                <img className="ms-2" width={4} height={15} src={threedots} alt="threedots-icon" />
               </Dropdown.Toggle>
 
               <Dropdown.Menu className="mt-2" style={{ backgroundColor: "var(--bg-color)" }}>

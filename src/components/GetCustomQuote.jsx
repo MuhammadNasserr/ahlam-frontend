@@ -1,7 +1,7 @@
 import React from "react";
-const LogoImage = "/images/logo.webp";
-const PomegranatesImage = "/images/Pomegranates.webp";
-const PotatoImage = "/images/Potato.webp";
+import LogoImage from "../../Public/images/logo.webp";
+import PomegranatesImage from "../../Public/images/Pomegranates.webp";
+import PotatoImage from "../../Public/images/Potato.webp";
 import { useTranslation } from "../contexts/TranslationContext";
 
 const GetCustomQuote = ({ name, openModal, closeModal, message, status }) => {

@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react"; // استيراد useState و useEffect و useRef
-const languageImage = "/images/language-circle.webp";
+import languageImage from "../../../Public/images/language-circle.webp";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
 import { useTranslation } from "../../contexts/TranslationContext";

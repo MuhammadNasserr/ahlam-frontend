@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSyncAlt } from "@fortawesome/free-solid-svg-icons";
-const besticon = "/images/best-icon.webp";
-const seller = "/images/seller-icon.webp";
+import besticon from "../../../../Public/images/best-icon.webp";
+import seller from "../../../../Public/images/seller-icon.webp";
 
 const BestSellerHeader = ({ t, isError, isLoading, refetch }) => {
   return (

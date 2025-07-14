@@ -1,4 +1,4 @@
-const connect = "/images/connect.webp";
+import connect from "../../../Public/images/connect.webp";
 import { useTranslation } from "../../contexts/TranslationContext";
 
 const ConnectSection = ({ openModal, closeModal }) => {

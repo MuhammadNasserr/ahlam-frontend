@@ -2,10 +2,10 @@ import React from "react";
 import { faEnvelope } from "@fortawesome/free-regular-svg-icons";
 import { faLocationDot, faPhone } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-const CornsImage = "/images/corns.webp";
-const GetInTouchImage = "/images/get_in_touch.webp";
-const PappersImage = "/images/peppers.webp";
-const SparksImage = "/images/sparks.webp";
+import CornsImage from "../../../Public/images/corns.webp";
+import GetInTouchImage from "../../../Public/images/get_in_touch.webp";
+import PappersImage from "../../../Public/images/peppers.webp";
+import SparksImage from "../../../Public/images/sparks.webp";
 import { useTranslation } from "../../contexts/TranslationContext";
 
 export const GetInTouch = () => {

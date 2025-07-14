@@ -1,5 +1,7 @@
 import { useTranslation } from "../contexts/TranslationContext";
-
+import logo from "../../Public/images/logo.webp";
+import potato from "../../Public/images/Potato.webp";
+import Pomegranates from "../../Public/images/Pomegranates.webp";
 const SendMessage = ({ openModal, closeModal, message }) => {
   const { t } = useTranslation();
 
@@ -73,11 +75,7 @@ const SendMessage = ({ openModal, closeModal, message }) => {
         >
           {/* PomegranatesImage Image */}
           <div className="position-absolute top-0 start-0 p-2">
-            <img
-              style={{ width: "120px" }}
-              src="/images/Pomegranates.webp"
-              alt="PomegranatesImage"
-            />
+            <img style={{ width: "120px" }} src={Pomegranates} alt="PomegranatesImage" />
           </div>
 
           {/* Logo Image */}
@@ -86,7 +84,7 @@ const SendMessage = ({ openModal, closeModal, message }) => {
               className="d-block mx-auto mb-3 "
               width={90}
               height={60}
-              src="/images/logo.webp"
+              src={logo}
               alt="logo-img"
             />
           </div>
@@ -173,7 +171,7 @@ const SendMessage = ({ openModal, closeModal, message }) => {
 
           {/* Potato Image */}
           <div className="position-absolute bottom-0 end-0 p-2 ">
-            <img style={{ width: "100px" }} src="/images/Potato.webp" alt="PotatoImage" />
+            <img style={{ width: "100px" }} src={potato} alt="PotatoImage" />
           </div>
         </div>
       </div>

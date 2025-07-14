@@ -3,6 +3,7 @@ import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
 import { useTranslation } from "../../contexts/TranslationContext";
+import ournumber from "../../../Public/images/our-num.webp";
 
 export const OurNumbersSection = () => {
   const { t } = useTranslation();
@@ -93,7 +94,7 @@ export const OurNumbersSection = () => {
         className="our-icon trend-icon position-absolute"
         width="200"
         height="200"
-        src="/images/our-num.webp"
+        src={ournumber}
         alt="our-num"
         loading="lazy"
       />

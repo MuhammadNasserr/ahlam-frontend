@@ -1,12 +1,12 @@
 import React from "react";
-const whyahlam = "/images/why-ahlam.webp";
-const besticon = "/images/best-icon.webp";
-const why1 = "/images/why1.webp";
-const why2 = "/images/why2.webp";
-const why3 = "/images/why3.webp";
-const why4 = "/images/why4.webp";
-const why5 = "/images/why5.webp";
-const why6 = "/images/why6.webp";
+import whyahlam from "../../../Public/images/why-ahlam.webp";
+import besticon from "../../../Public/images/best-icon.webp";
+import why1 from "../../../Public/images/why1.webp";
+import why2 from "../../../Public/images/why2.webp";
+import why3 from "../../../Public/images/why3.webp";
+import why4 from "../../../Public/images/why4.webp";
+import why5 from "../../../Public/images/why5.webp";
+import why6 from "../../../Public/images/why6.webp";
 
 // --- START: إضافة كود الترجمة ---
 import { useTranslation } from "../../contexts/TranslationContext";

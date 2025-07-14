@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-const searchIcon = "/images/search-01.webp";
+import searchIcon from "../../../Public/images/search-01.webp";
 import { useQuery } from "@tanstack/react-query";
 import { fetchData } from "../../utilis/fetch";
 import { useTranslation } from "../../contexts/TranslationContext";

@@ -3,6 +3,7 @@ import { GetInTouch } from "../components/contactCompoennts";
 import SendMessage from "../components/SendMessage";
 import Modal from "../components/Modal";
 import { useTranslation } from "../contexts/TranslationContext";
+import map from "../../Public/images/map.webp";
 const Confirm = lazy(() => import("../components/Confirm"));
 const ContactUs = () => {
   const { t } = useTranslation();
@@ -38,8 +39,8 @@ const ContactUs = () => {
               width: "100%",
               height: "300px",
             }}
-            src="/images/map.webp"
-            alt=""
+            src={map}
+            alt="map-img"
           />
         </a>
       </div>

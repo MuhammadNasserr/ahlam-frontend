@@ -1,6 +1,6 @@
-const lines = "/images/lines.webp";
-const buyer = "/images/buyer.webp"; // <--- ستقوم بتحميل هذه الصورة كـ <img>
-const supplier = "/images/supplier.webp"; // <--- ستقوم بتحميل هذه الصورة كـ <img>
+import lines from "../../../Public/images/lines.webp";
+import buyer from "../../../Public/images/buyer.webp";
+import supplier from "../../../Public/images/supplier.webp";
 import { Link } from "react-router-dom";
 
 import { useTranslation } from "../../contexts/TranslationContext";

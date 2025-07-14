@@ -1,4 +1,4 @@
-const abouthome = "/images/About-home.webp";
+import abouthome from "../../../Public/images/About-home.webp";
 
 // --- START: إضافة كود الترجمة ---
 import { useTranslation } from "../../contexts/TranslationContext";

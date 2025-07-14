@@ -1,9 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import MainTitle from "../MainTitle";
-const TurnipImage = "/images/Turnip.webp";
+import TurnipImage from "../../../Public/images/Turnip.webp";
 import AccordionComponent from "../AccordionComponent";
-const PappersImage = "/images/peppers.webp";
+import PappersImage from "../../../Public/images/peppers.webp";
 import { useTranslation } from "../../contexts/TranslationContext";
 
 export const FAQS = () => {

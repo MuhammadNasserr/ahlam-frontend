@@ -1,5 +1,5 @@
 import { useTranslation } from "../contexts/TranslationContext";
-
+import logo from "../../Public/images/logo.webp";
 const SupplierForm = ({ openModal, closeModal }) => {
   const { t } = useTranslation();
 
@@ -63,7 +63,7 @@ const SupplierForm = ({ openModal, closeModal }) => {
       <div className="container py-5">
         <div className="card supplier-form-card text-center p-4 rounded-5">
           <img
-            src="/images/logo.webp"
+            src={logo}
             alt="AHLAM Logo"
             width="90"
             height="60"
