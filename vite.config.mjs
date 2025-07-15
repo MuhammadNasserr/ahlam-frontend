@@ -22,9 +22,9 @@ export default defineConfig({
             attrs: {
               rel: "preload",
               as: "image",
-              href: "/images/img1-1920.webp", // مسار الصورة الأكبر أو الافتراضية
+              href: "/Public/images/img1-1920.webp", // مسار الصورة الأكبر أو الافتراضية
               imagesrcset:
-                "/images/img1-320.webp 320w, /images/img1-480.webp 480w, /images/img1-768.webp 768w, /images/img1-1024.webp 1024w, /images/img1-1440.webp 1440w, /images/img1-1920.webp 1920w",
+                "/Public/images/img1-320.webp 320w, /Public/images/img1-480.webp 480w, /Public/images/img1-768.webp 768w, /Public/images/img1-1024.webp 1024w, /Public/images/img1-1440.webp 1440w, /Public/images/img1-1920.webp 1920w",
               imagesizes: "100vw",
             },
           },

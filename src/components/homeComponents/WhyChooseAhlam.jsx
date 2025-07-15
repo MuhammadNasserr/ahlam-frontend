@@ -96,7 +96,7 @@ const WhyChooseAhlam = () => {
           <div className="col-12 col-lg-5" data-aos="fade-right">
             <img
               src={whyahlam}
-              className="ahlam-img mb-5"
+              className="ahlam-img mb-md-0 mb-5"
               width={400}
               height={500}
               alt="why-ahlam"
@@ -105,7 +105,7 @@ const WhyChooseAhlam = () => {
           </div>
           <div className="col-12 col-lg-6" data-aos="fade-left">
             <div className="why-word position-relative">
-              <h1 className="home-heading pt-3 mb-3">
+              <h1 className="home-heading pt-3 mb-5">
                 {t("why_choose_ahlam_heading", "Why Choose")}
                 <span>
                   Ahlam
@@ -119,12 +119,6 @@ const WhyChooseAhlam = () => {
                   />
                 </span>
               </h1>
-              <p className="home-description mb-5 mx-auto mx-lg-0">
-                {t(
-                  "why_choose_ahlam_description",
-                  "Because we believe quality starts at the source — we select the finest produce, apply the highest export standards, and deliver excellence every time."
-                )}
-              </p>
             </div>
             <div className="row row-gap-4">
               {sectionsData.map((box, i) => (

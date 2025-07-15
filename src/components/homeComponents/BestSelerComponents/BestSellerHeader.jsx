@@ -28,12 +28,6 @@ const BestSellerHeader = ({ t, isError, isLoading, refetch }) => {
             />
           </span>
         </h1>
-        <p className="home-description mx-auto">
-          {t(
-            "best_seller_description",
-            "Explore our top-selling products, carefully selected for importers and distributors seeking high-quality bulk supplies. With a strong focus on export-grade standards, our diverse range ensures reliability and consistency to support the needs of global import businesses."
-          )}
-        </p>
         {isError && (
           <div
             className="alert alert-danger mt-3 d-flex align-items-center justify-content-center"

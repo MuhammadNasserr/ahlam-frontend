@@ -31,15 +31,17 @@ const BestSellerSliderNav = ({ prevBtnRef, nextBtnRef, sliderRef, scrollAmount }
         nextBtn.removeEventListener("click", handleNextClick);
       }
     };
-  }, [prevBtnRef, nextBtnRef, sliderRef, scrollAmount]); // Dependencies simplified
+  }, [prevBtnRef, nextBtnRef, sliderRef, scrollAmount]);
 
   return (
-    <div className="carousel-nav">
+    // أضفنا فئة منفصلة لكل زر لتسهيل تحديد المواقع في CSS
+    <>
       <button
         ref={prevBtnRef}
+        className="carousel-prev-btn" // فئة جديدة
         style={{
           backgroundColor: "#ccffd4",
-          color: " var(--green-color)",
+          color: "var(--green-color)",
         }}
       >
         <FontAwesomeIcon icon={faAngleLeft} className="fa-beat" />
@@ -47,15 +49,16 @@ const BestSellerSliderNav = ({ prevBtnRef, nextBtnRef, sliderRef, scrollAmount }
       </button>
       <button
         ref={nextBtnRef}
+        className="carousel-next-btn" // فئة جديدة
         style={{
-          backgroundColor: " var(--green-color)",
+          backgroundColor: "var(--green-color)",
           color: "white",
         }}
       >
         <FontAwesomeIcon icon={faAngleRight} className="fa-beat" />
         <span className="visually-hidden">Next slide</span>
       </button>
-    </div>
+    </>
   );
 };
 

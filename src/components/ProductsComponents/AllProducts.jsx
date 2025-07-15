@@ -7,7 +7,7 @@ export const AllProducts = () => {
       <div className="container">
         <div className="content">
           {/* Your other components */}
-          <Calendar />
+          {/* <Calendar /> */}
           <FetchProducts />
         </div>
       </div>

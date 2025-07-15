@@ -156,7 +156,7 @@ const BestSellerSection = () => {
       slider.removeEventListener("touchend", handleTouchEnd);
       slider.removeEventListener("touchmove", handleTouchMove);
     };
-  }, [DRAG_SPEED_MULTIPLIER, dragMovementThreshold, scrollThreshold]); // تحديث dependencies
+  }, [DRAG_SPEED_MULTIPLIER, dragMovementThreshold, scrollThreshold]);
 
   const numberOfSkeletonCards = 4;
 
@@ -175,29 +175,33 @@ const BestSellerSection = () => {
         {/* رأس القسم */}
         <BestSellerHeader t={t} isError={isError} isLoading={isLoading} refetch={refetch} />
 
-        {/* حاوية الكاروسيل (السلايدر) */}
-        <div className="carousel-container" ref={sliderRef}>
-          <BestSellerContent
-            isLoading={isLoading}
-            isError={isError}
-            data={data}
-            numberOfSkeletonCards={numberOfSkeletonCards}
-            isDraggingRef={isDraggingRef} // تمرير isDraggingRef
-            openModal={openModal}
-            setCurrentProductName={setCurrentProductName}
-            setCurrentProductId={setCurrentProductId}
-          />
+        {/* حاوية جديدة للأزرار والكاروسيل لوضع الأزرار على الجانبين */}
+        <div className="carousel-wrapper">
+          {" "}
+          {/* أضفنا هذا الـ div الجديد */}
+          {/* أزرار التنقل (الأسهم) - سيتم وضعها بشكل مطلق داخل carousel-wrapper */}
+          {!isLoading && !isError && data.length > 0 && (
+            <BestSellerSliderNav
+              prevBtnRef={prevBtnRef}
+              nextBtnRef={nextBtnRef}
+              sliderRef={sliderRef}
+              scrollAmount={scrollAmount}
+            />
+          )}
+          {/* حاوية الكاروسيل (السلايدر) */}
+          <div className="carousel-container" ref={sliderRef}>
+            <BestSellerContent
+              isLoading={isLoading}
+              isError={isError}
+              data={data}
+              numberOfSkeletonCards={numberOfSkeletonCards}
+              isDraggingRef={isDraggingRef}
+              openModal={openModal}
+              setCurrentProductName={setCurrentProductName}
+              setCurrentProductId={setCurrentProductId}
+            />
+          </div>
         </div>
-
-        {/* أزرار التنقل (الأسهم) */}
-        {!isLoading && !isError && data.length > 0 && (
-          <BestSellerSliderNav
-            prevBtnRef={prevBtnRef}
-            nextBtnRef={nextBtnRef}
-            sliderRef={sliderRef}
-            scrollAmount={scrollAmount}
-          />
-        )}
       </div>
       <Modal isOpen={submitted}>
         <Confirm />

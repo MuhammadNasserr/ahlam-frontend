@@ -4,25 +4,25 @@ import { useTranslation } from "../contexts/TranslationContext";
 const Subescripe = () => {
   const { t } = useTranslation();
   const containerRef = useRef(null);
-  const [setLottie] = useState(null);
 
   useEffect(() => {
     const loadLottie = async () => {
       const lottieModule = await import("lottie-web");
       const animationData = await import("../../Public/lottie/subscribe.json");
-      setLottie(lottieModule.default);
 
-      const animation = lottieModule.default.loadAnimation({
-        container: containerRef.current,
-        renderer: "svg",
-        loop: false,
-        autoplay: true,
-        animationData: animationData.default,
-      });
+      if (containerRef.current && animationData.default && lottieModule.default) {
+        const animation = lottieModule.default.loadAnimation({
+          container: containerRef.current,
+          renderer: "svg",
+          loop: false,
+          autoplay: true,
+          animationData: animationData.default,
+        });
 
-      return () => {
-        animation.destroy();
-      };
+        return () => {
+          animation.destroy();
+        };
+      }
     };
 
     loadLottie();

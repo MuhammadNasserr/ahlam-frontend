@@ -94,7 +94,11 @@ export const LanguageSwitcher = () => {
       <ul
         className={`dropdown-menu dropdown-menu-end ${isDropdownOpen ? "show" : ""}`} // بنضيف كلاس show يدويًا
         aria-labelledby="langDropdown"
-        style={{ backgroundColor: "var(--bg-color)" }}
+        style={{
+          backgroundColor: "var(--bg-color)",
+          minWidth: "100px",
+          marginTop: "5px",
+        }}
       >
         <li>
           <button

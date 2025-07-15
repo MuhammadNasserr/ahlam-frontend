@@ -65,17 +65,12 @@ const OurProductsSection = () => {
   return (
     <section className="our-product position-relative text-center text-md-start py-5">
       <div className="container">
-        <div className="product-heading" data-aos="zoom-out">
+        <div
+          className="product-heading d-flex justify-content-center justify-content-md-between"
+          data-aos="zoom-out"
+        >
           <h1 className="home-heading mb-3">{t("our_products_heading", "Our Products")}</h1>
           <div className="d-flex justify-content-between align-items-start">
-            <p className="home-description me-3">
-              {" "}
-              {/* Added me-3 for spacing */}
-              {t(
-                "our_products_description",
-                "As a trusted exporter, we take pride in providing a wide range of premium Egyptian agricultural products to meet the demands of importers, distributors, and retailers worldwide. Our catalog includes frozen fruits and vegetables, fresh produce, aromatic herbs, exotic spices, and quality pickles—reflecting the rich variety and excellence of Egypt’s agricultural heritage."
-              )}
-            </p>
             <Link
               className="home-btn d-none d-md-block flex-shrink-0" // Added flex-shrink-0
               style={{ backgroundColor: "transparent" }}

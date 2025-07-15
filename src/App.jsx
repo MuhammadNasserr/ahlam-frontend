@@ -101,9 +101,9 @@ const route = createBrowserRouter([
 const App = () => {
   useEffect(() => {
     AOS.init({
-      duration: 1000,
-      once: false,
-      mirror: true,
+      duration: 500,
+      once: true,
+      mirror: false,
     });
   }, []);
 
