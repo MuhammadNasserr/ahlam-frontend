@@ -16,7 +16,7 @@ const AboutSection = () => {
         // backgroundPosition: "center", // هذه الخصائص لن تكون ضرورية في الـ section بعد الآن
         // backgroundSize: "cover",     // هذه الخصائص لن تكون ضرورية في الـ section بعد الآن
         // --- END: إزالة backgroundImage من هنا ---
-        height: "660px",
+        height: "500px",
         backgroundColor: "var(--white-color)",
         color: "#fff",
         overflow: "hidden", // لمنع أي overflow للصورة لو كانت أكبر من القسم
