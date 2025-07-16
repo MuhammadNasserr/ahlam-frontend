@@ -1,6 +1,6 @@
 import { useState, lazy, Suspense } from "react";
 import Modal from "../components/Modal";
-import { HeaderSection, OurNumbersSection } from "../components/homeComponents";
+import { HeaderSection } from "../components/homeComponents";
 
 // ✅ Lazy load للمكونات الثقيلة
 const BestSellerSection = lazy(
@@ -22,7 +22,6 @@ export const Home = () => {
   return (
     <>
       <HeaderSection />
-      <OurNumbersSection />
 
       <Suspense fallback={null}>
         <BestSellerSection />

@@ -11,6 +11,7 @@ import threedots from "../../../Public/images/threedots.webp";
 import { useTranslation } from "../../contexts/TranslationContext";
 import Carousel from "react-bootstrap/Carousel";
 import Dropdown from "react-bootstrap/Dropdown";
+import { OurNumbersSection } from "./OurNumbersSection";
 
 export const HeaderSection = () => {
   const { t } = useTranslation();
@@ -55,7 +56,7 @@ export const HeaderSection = () => {
       </Carousel>
 
       <div
-        className="container text-center"
+        className="container text-center mt-5 mt-md-0"
         style={{
           position: "absolute",
           top: "50%",
@@ -115,6 +116,7 @@ export const HeaderSection = () => {
               {t("contact_us_button", "Contact us")}
             </Link>
           </div>
+          <OurNumbersSection />
         </div>
       </div>
     </header>
