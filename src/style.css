@@ -1095,12 +1095,14 @@ header .dropdown-toggle::after {
 }
 
 /*----------Our-Product------------*/
-.our-product .product-heading a {
+.our-product .other-btn {
   position: relative;
   height: fit-content;
+  width: fit-content;
+  margin-left: auto;
 }
 
-.our-product .product-heading a::after {
+.our-product .other-btn::after {
   content: "";
   position: absolute;
   top: 0;
@@ -1114,11 +1116,11 @@ header .dropdown-toggle::after {
   border-radius: 12px;
 }
 
-.our-product .product-heading a:hover::after {
+.our-product .other-btn:hover::after {
   width: 100%;
 }
 
-.our-product .product-heading a:hover {
+.our-product .other-btn:hover {
   color: #fff !important;
 }
 
@@ -1374,6 +1376,7 @@ textarea {
   .our-number .num .rate p {
     font-size: 16px;
   }
+
   .carousel-item {
     height: 120vh;
   }
@@ -1406,6 +1409,10 @@ textarea {
   .our-product .category .card button {
     font-size: 14px;
     padding: 6px;
+  }
+
+  .our-product .other-btn {
+    margin: auto;
   }
 
   /*----------Why-ahlam------------*/

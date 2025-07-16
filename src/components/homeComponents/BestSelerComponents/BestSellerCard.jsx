@@ -12,7 +12,7 @@ const BestSellerCard = ({
 
   return (
     <div className="d-inline-block product-card-wrapper">
-      <div className="product-card" data-aos="fade-up">
+      <div className="product-card">
         <Link
           to={`/products/${product.id}`}
           className="product-card-link-area"

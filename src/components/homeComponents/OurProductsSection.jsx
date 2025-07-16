@@ -69,17 +69,9 @@ const OurProductsSection = () => {
           className="product-heading d-flex justify-content-center justify-content-md-between"
           data-aos="zoom-out"
         >
-          <h1 className="home-heading mb-3">{t("our_products_heading", "Our Products")}</h1>
-          <div className="d-flex justify-content-between align-items-start">
-            <Link
-              className="home-btn d-none d-md-block flex-shrink-0" // Added flex-shrink-0
-              style={{ backgroundColor: "transparent" }}
-              to="/products"
-            >
-              {t("others_button", "Others")}
-              <FontAwesomeIcon icon={faArrowRight} className="ms-2 shake" />
-            </Link>
-          </div>
+          <Link to="/products">
+            <h1 className="home-heading mb-3">{t("our_products_heading", "Our Products")}</h1>
+          </Link>
           {/* ✨ Error message and Refresh button, similar to BestSellerSection */}
           {isError && (
             <div
@@ -155,9 +147,8 @@ const OurProductsSection = () => {
             ))
           )}
         </div>
-
         <Link
-          className="home-btn d-block d-md-none my-4 mx-auto"
+          className="home-btn other-btn d-flex my-4 justify-content-center align-items-center"
           style={{ backgroundColor: "transparent" }}
           to="/products"
         >

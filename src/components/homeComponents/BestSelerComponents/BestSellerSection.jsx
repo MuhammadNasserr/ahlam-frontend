@@ -176,7 +176,7 @@ const BestSellerSection = () => {
         <BestSellerHeader t={t} isError={isError} isLoading={isLoading} refetch={refetch} />
 
         {/* حاوية جديدة للأزرار والكاروسيل لوضع الأزرار على الجانبين */}
-        <div className="carousel-wrapper">
+        <div className="carousel-wrapper" data-aos="fade-up">
           {" "}
           {/* أضفنا هذا الـ div الجديد */}
           {/* أزرار التنقل (الأسهم) - سيتم وضعها بشكل مطلق داخل carousel-wrapper */}
