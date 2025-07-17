@@ -61,10 +61,9 @@ export const ProductButtons = ({ productId, productName, productStatus }) => {
           onClick={() => openModal(MODAL_TYPES.PRICE_REQUEST)} // ⬅️ نحدد نوع المودال عند النقر
           className="py-2 rounded-3 px-2 w-100 mb-3"
           style={{
-            backgroundColor: `${productStatus ? "var(--green-color)" : "#aaa"}`,
-            color: `${productStatus ? "#fff" : "#000"}`,
+            backgroundColor: "var(--green-color)",
+            color: "#fff",
           }}
-          disabled={!productStatus}
         >
           {t("Quick_Price_Request", "Quick Price Request")}
         </button>
@@ -73,10 +72,9 @@ export const ProductButtons = ({ productId, productName, productStatus }) => {
           onClick={() => openModal(MODAL_TYPES.SIMPLE_REQUEST)} // ⬅️ نحدد نوع المودال عند النقر
           className="py-2 rounded-3 px-2 w-100"
           style={{
-            backgroundColor: `${productStatus ? "var(--bg-green)" : "#ddd"}`,
-            color: `${productStatus ? "var(--green-color)" : "#000"}`,
+            backgroundColor: "var(--bg-green)",
+            color: "var(--green-color)",
           }}
-          disabled={!productStatus}
         >
           {t("Free_Simple_Request", "Free Simple Request")}
         </button>

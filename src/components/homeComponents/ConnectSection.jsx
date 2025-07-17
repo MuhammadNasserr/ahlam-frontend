@@ -93,8 +93,8 @@ const ConnectSection = ({ openModal, closeModal }) => {
               <input type="submit" value={t("contact_us_now_button", "Contact Us Now")} />
             </form>
           </div>
-          <div className="col-md-12 col-lg-6" data-aos="fade-up">
-            <img className="img-fluid" src={connect} alt="connect-home" loading="lazy" />
+          <div className="col-md-12 col-lg-6 mt-5 mt-md-0" data-aos="fade-up">
+            <img className="img-fluid rounded-4" src={connect} alt="connect-home" loading="lazy" />
           </div>
         </div>
       </div>

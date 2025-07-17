@@ -1,5 +1,6 @@
 import React, { createContext, useState, useEffect, useContext } from "react";
 
+// استيراد ملفات الترجمة الخاصة بك
 import frbasic from "../../src/translation/fr/basic.json";
 import frHome from "../../src/translation/fr/home.json";
 import frFaqs from "../../src/translation/fr/faqs.json";
@@ -23,6 +24,7 @@ const allTranslations = {
     ...frFaqs,
     ...frContact,
     ...frSupplier,
+    ...frFaqs, // ملاحظة: frFaqs مكررة هنا، تأكد من صحة هذا
     ...frPrivacy,
     ...frProduct,
   },
@@ -48,26 +50,30 @@ export const TranslationProvider = ({ children }) => {
   const [currentTranslations, setCurrentTranslations] = useState({});
 
   useEffect(() => {
+    // تحديث الترجمات الحالية بناءً على اللغة المختارة
     if (locale === "en" || !allTranslations[locale]) {
       setCurrentTranslations({});
     } else {
       setCurrentTranslations(allTranslations[locale]);
     }
-    localStorage.setItem("appLocale", locale);
 
+    // ضبط اتجاه الصفحة ولغة HTML
     document.documentElement.dir = "ltr";
     document.documentElement.lang = locale;
-  }, [locale]);
+
+    // **ملاحظة هامة:**
+    // لا يوجد كود خاص بتحميل Tawk.to هنا.
+    // Tawk.to سيتم تحميله بواسطة السكريبت الموجود في index.html
+    // وذلك عند كل تحميل كامل للصفحة (بما في ذلك بعد window.location.reload()).
+  }, [locale]); // useEffect سيتم تشغيله فقط عندما تتغير الـ 'locale'
 
   const t = (key, arg2, arg3) => {
     let defaultValue = undefined;
     let replacements = {};
 
     if (typeof arg2 === "object" && arg2 !== null) {
-      // Scenario: t(key, { replacements })
       replacements = arg2;
     } else if (arg2 !== undefined) {
-      // Scenario: t(key, defaultValue) or t(key, defaultValue, { replacements })
       defaultValue = arg2;
       if (typeof arg3 === "object" && arg3 !== null) {
         replacements = arg3;
@@ -94,7 +100,18 @@ export const TranslationProvider = ({ children }) => {
   };
 
   const changeLanguage = (newLocale) => {
+    // نحدد اللغة الجديدة في الـ state
     setLocale(newLocale);
+
+    // نحفظ اللغة الجديدة في Local Storage
+    // هذا مهم جداً ليتم قراءتها بواسطة سكريبت Tawk.to في index.html
+    localStorage.setItem("appLocale", newLocale);
+
+    // **الخطوة الحاسمة:** إعادة تحميل الصفحة لضمان تحديث Tawk.to
+    // هذا سيجعل المتصفح يعيد تحميل الصفحة بالكامل، مما يضمن أن
+    // سكريبت Tawk.to في index.html سيتم تشغيله مرة أخرى
+    // وسيقوم بقراءة 'appLocale' المحدثة من Local Storage.
+    window.location.reload();
   };
 
   return (

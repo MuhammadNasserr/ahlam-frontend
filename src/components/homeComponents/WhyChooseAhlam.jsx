@@ -93,14 +93,13 @@ const WhyChooseAhlam = () => {
     >
       <div className="container">
         <div className="row justify-content-between flex-column flex-lg-row align-items-center">
-          <div className="col-12 col-lg-5" data-aos="fade-right">
+          <div className="col-12 col-lg-5 mb-5 mb-lg-0" data-aos="fade-right">
             <img
               src={whyahlam}
-              className="ahlam-img mb-md-0 mb-5"
-              width={400}
-              height={500}
+              className="ahlam-img img-fluid mb-md-0 mb-5 rounded-4"
               alt="why-ahlam"
               loading="lazy"
+              style={{ height: "450px" }}
             />
           </div>
           <div className="col-12 col-lg-6" data-aos="fade-left">

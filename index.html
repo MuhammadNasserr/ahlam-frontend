@@ -8,7 +8,7 @@
       name="description"
       content="High-quality Egyptian fresh fruits, vegetables, and more for export. Ahlam Foods offers reliable sourcing and supplier partnerships. Get your free sample today!"
     />
-    <link rel="icon" href="Public/images/logodark.webp" />
+    <link rel="icon" href="Public/images/web-icon.webp" />
     <title>AHLAM</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -34,20 +34,42 @@
     ></script>
 
     <script type="module" src="/src/main.jsx"></script>
-    <!--Start of Tawk.to Script-->
+
     <script type="text/javascript">
+      function getChatIdAndPropertyId() {
+        var storedLanguage = localStorage.getItem("appLocale");
+        var currentLanguage = storedLanguage || "en";
+        var propertyId = "68782b4f3d9d30190be782e4";
+
+        switch (currentLanguage) {
+          case "fr":
+            return propertyId + "/1j0c8sdf6"; // Widget ID للغة الفرنسية
+          case "en":
+            return propertyId + "/1j0amibp1"; // Widget ID للغة الإنجليزية
+          case "ru":
+            return propertyId + "/YOUR_RU_WIDGET_ID"; // **مهم: استبدل هذا بـ Widget ID الروسي الصحيح**
+          default:
+            return propertyId + "/1j0amibp1"; // افتراضيًا الإنجليزية
+        }
+      }
+
       var Tawk_API = Tawk_API || {},
         Tawk_LoadStart = new Date();
       (function () {
+        var chatInfo = getChatIdAndPropertyId();
+        if (!chatInfo) {
+          console.error("Tawk.to chatInfo is empty, not loading chat.");
+          return;
+        }
+
         var s1 = document.createElement("script"),
           s0 = document.getElementsByTagName("script")[0];
         s1.async = true;
-        s1.src = "https://embed.tawk.to/68782b4f3d9d30190be782e4/1j0amibp1";
+        s1.src = "https://embed.tawk.to/" + chatInfo;
         s1.charset = "UTF-8";
         s1.setAttribute("crossorigin", "*");
         s0.parentNode.insertBefore(s1, s0);
       })();
     </script>
-    <!--End of Tawk.to Script-->
-  </body>
+    </body>
 </html>

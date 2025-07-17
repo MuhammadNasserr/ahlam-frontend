@@ -248,10 +248,9 @@ const GetCustomQuote = ({ name, openModal, closeModal, message, status }) => {
                 style={{
                   width: "250px",
                   maxWidth: "100%",
-                  backgroundColor: `${status ? "var(--green-color)" : "#aaa"}`,
+                  backgroundColor: "var(--green-color)",
                 }}
                 type="submit"
-                disabled={!status}
               >
                 {t("get_best_price", "Get Best Price")}
               </button>

@@ -37,7 +37,7 @@ const BestSellerSection = () => {
   const isDraggingRef = useRef(false);
   const clickStartTimeRef = useRef(0);
 
-  const scrollAmount = 200;
+  const scrollAmount = 300;
   const dragMovementThreshold = 5;
   const scrollThreshold = 10;
   const DRAG_SPEED_MULTIPLIER = 3;

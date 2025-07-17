@@ -9,14 +9,9 @@ const AboutSection = () => {
 
   return (
     <section
-      className="about d-flex align-items-center justify-content-center position-relative" // أضف position-relative للسماح للصورة الداخلية بالتموضع المطلق
+      className="about py-5 d-flex align-items-center justify-content-center position-relative" // أضف position-relative للسماح للصورة الداخلية بالتموضع المطلق
       style={{
-        // --- START: إزالة backgroundImage من هنا ---
-        // backgroundImage: `url('${abouthome}')`,
-        // backgroundPosition: "center", // هذه الخصائص لن تكون ضرورية في الـ section بعد الآن
-        // backgroundSize: "cover",     // هذه الخصائص لن تكون ضرورية في الـ section بعد الآن
-        // --- END: إزالة backgroundImage من هنا ---
-        height: "500px",
+        maxHeight: "800px",
         backgroundColor: "var(--white-color)",
         color: "#fff",
         overflow: "hidden", // لمنع أي overflow للصورة لو كانت أكبر من القسم

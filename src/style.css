@@ -96,6 +96,12 @@ pre {
 
 
 /* إذا كنت ترغب في تصغير حجم الأزرار قليلاً على الشاشات الأصغر */
+@media (max-width: 330px) {
+  .carousel-item {
+    height: 170vh !important;
+  }
+}
+
 @media (max-width: 576px) {
   .carousel-container {
     /* قلل الـ padding الداخلي إذا كانت الأزرار أصغر لتعظيم مساحة المحتوى */
@@ -108,7 +114,7 @@ pre {
   }
 
   .carousel-next-btn {
-    right: 5px;
+    right: 30px;
     /* قرب الزر أكثر من الحافة */
   }
 }
@@ -949,7 +955,7 @@ header .dropdown-toggle::after {
 }
 
 .best-seller .carousel-container {
-  margin-left: 15px;
+  margin-left: 20px;
   overflow-x: auto;
   white-space: nowrap;
   cursor: grab;
@@ -1025,6 +1031,9 @@ header .dropdown-toggle::after {
   border-radius: 12px;
   font-size: 16px;
   font-weight: 800;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  word-break: break-word;
 }
 
 /*----
@@ -1033,8 +1042,9 @@ header .dropdown-toggle::after {
 .best-seller .product-card .card-body .card-txt .descripe-card {
   font-size: 15px;
   font-weight: 400;
-  white-space: normal;
+  white-space: pre-wrap;
   word-wrap: break-word;
+  word-break: break-word;
   overflow-wrap: break-word;
   color: var(--sub-text);
   margin-bottom: 0;
@@ -1050,6 +1060,9 @@ header .dropdown-toggle::after {
   color: var(--heading-color);
   margin-bottom: 0;
   transition: 1s;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  word-break: break-word;
 }
 
 /*----
@@ -1149,6 +1162,9 @@ header .dropdown-toggle::after {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  word-break: break-word;
 }
 
 /*----------Why-ahlam------------*/
@@ -1194,6 +1210,9 @@ header .dropdown-toggle::after {
 
 .why-sm-img:hover .after {
   display: flex;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  word-break: break-word;
 }
 
 /*----------Roles------------*/
@@ -1201,7 +1220,7 @@ header .dropdown-toggle::after {
   position: relative;
   padding: 20px;
   border-radius: 30px;
-  max-height: 1130px;
+  max-height: 1350px;
 }
 
 .roles .role-container .buyer-supp::after {
@@ -1288,7 +1307,6 @@ textarea {
   }
 
   .about {
-    height: 700px !important;
     font-size: 14px;
   }
 
@@ -1378,18 +1396,18 @@ textarea {
   }
 
   .carousel-item {
-    height: 120vh;
+    height: 130vh;
   }
 
   /*----------Best-Seller------------*/
   /*----
     card------*/
   .best-seller .product-card {
-    width: 260px;
+    width: 280px;
   }
 
   .best-seller .product-card .card-body .card-image {
-    width: 240px;
+    width: 260px;
     height: 210px;
   }
 
@@ -1417,8 +1435,8 @@ textarea {
 
   /*----------Why-ahlam------------*/
   .why .ahlam-img {
-    width: 270px;
-    height: 350px;
+    width: 100%;
+    height: 350px !important;
   }
 
   .why-sm-img .after {
