@@ -34,7 +34,7 @@
   "back_to_homepage_button": "Retour à la page d'accueil",
   "Quick Inquire": "Demande Rapide",
   "per ton": "par tonne",
-  "Failed_load_month":"Échec du chargement du mois.",
+  "Failed_load_month": "Échec du chargement du mois.",
   "error_loading_data": "Échec du chargement des données. Veuillez réessayer.",
   "no_products_due_to_error": "Aucun produit n'a pu être affiché en raison d'une erreur.",
   "no_categories_due_to_error": "Aucune catégorie n'a pu être affichée en raison d'une erreur.",
@@ -49,9 +49,9 @@
   "direct_support_desc": "Contactez notre équipe pour un support rapide, convivial et fiable pour toute question.",
   "tailored_products_title": "Produits sur mesure",
   "tailored_products_desc": "Obtenez des options de produits personnalisées adaptées aux besoins de votre marché et à vos préférences d'emballage.",
-  "Submit_request":" Soumettre la demande",
-  "Request_Sample":"Demandez votre échantillon gratuit",
-  "Request_Price":"Demander le prix du produit",
-  "Design_contact":"Concevez votre site web idéal avec nous.",
-  "our_link":"Commencez dès aujourd'hui!"
+  "Submit_request": " Soumettre la demande",
+  "Request_Sample": "Demandez votre échantillon gratuit",
+  "Request_Price": "Demander le prix du produit",
+  "Design_contact": "Concevez votre site web idéal avec nous.",
+  "our_link": "Commencez dès aujourd'hui!"
 }

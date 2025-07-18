@@ -38,7 +38,11 @@ export default defineConfig({
       output: {
         manualChunks: (id) => {
           if (id.includes("node_modules")) {
-            const moduleName = id.toString().split("node_modules/")[1].split("/")[0].toString();
+            const moduleName = id
+              .toString()
+              .split("node_modules/")[1]
+              .split("/")[0]
+              .toString();
 
             // المكتبات الأساسية اللي بنقسمها
             if (["react", "react-dom"].includes(moduleName)) {
@@ -107,7 +111,7 @@ export default defineConfig({
                   // مكان الحقن: ابحث عن </head> وأضف قبله (ليكون في الـ head)
                   indexHtmlAsset.source = indexHtmlAsset.source.replace(
                     "</head>",
-                    `${cssLinkTag}\n</head>`
+                    `${cssLinkTag}\n</head>`,
                   );
                 }
               }

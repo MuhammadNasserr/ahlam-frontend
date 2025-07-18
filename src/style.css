@@ -81,7 +81,9 @@ pre {
   /* لتحديد حجم الزر */
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
   /* لإضافة ظل بسيط */
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
 }
 
 .carousel-prev-btn {
@@ -93,7 +95,6 @@ pre {
   right: 10px;
   /* ضع زر التالي على بعد 10 بكسل من اليمين (سيكون فوق الكاروسيل) */
 }
-
 
 /* إذا كنت ترغب في تصغير حجم الأزرار قليلاً على الشاشات الأصغر */
 @media (max-width: 330px) {
@@ -114,7 +115,7 @@ pre {
   }
 
   .carousel-next-btn {
-    right: 30px;
+    right: 20px;
     /* قرب الزر أكثر من الحافة */
   }
 }
@@ -841,7 +842,6 @@ header .dropdown-toggle::after {
 }
 
 @keyframes fa-shake {
-
   10%,
   90% {
     transform: translate3d(-0.5px, 0, 0);
@@ -956,6 +956,7 @@ header .dropdown-toggle::after {
 
 .best-seller .carousel-container {
   margin-left: 20px;
+  margin-right: 40px;
   overflow-x: auto;
   white-space: nowrap;
   cursor: grab;
@@ -998,7 +999,6 @@ header .dropdown-toggle::after {
   transform: translateY(-10px);
 } */
 @media (hover: hover) {
-
   /*hover heereee*/
   .best-seller .product-card a:hover .card-body .card-image img {
     transform: scale(1.2);
@@ -1454,17 +1454,16 @@ textarea {
 }
 
 @media (min-width: 768px) {
-
   /* Send Message */
   .send-message .content form .input {
     width: calc(50% - 8px) !important;
   }
 }
 
-@media (min-width: 768px) and (max-width: 992px) {}
+@media (min-width: 768px) and (max-width: 992px) {
+}
 
 @media (max-width: 992px) {
-
   /*-------------------------  Nav  ------------------------ */
   /*------------------ Container of Pages (ul) ---------------- */
   nav .navbar-nav {
@@ -1481,7 +1480,6 @@ textarea {
 }
 
 @media (min-width: 992px) {
-
   /*-------------------------  Nav  ------------------------ */
   /*---------------- Side Menu -----------------------*/
   .side-menu {
@@ -1489,6 +1487,8 @@ textarea {
   }
 }
 
-@media (min-width: 992px) and (max-width: 1200px) {}
+@media (min-width: 992px) and (max-width: 1200px) {
+}
 
-@media (min-width: 1200px) {}
+@media (min-width: 1200px) {
+}
