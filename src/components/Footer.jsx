@@ -40,22 +40,22 @@ const Footer = ({ isDark }) => {
               <h5>{t("footer_products_heading", "Products")}</h5>
               <ul className="list-unstyled mt-3 footer-link">
                 <li>
-                  <Link to="/products#fresh-fruits" className="text-body">
+                  <Link to="/products?categoryName=Fresh Fruits" className="text-body">
                     {t("fresh_fruits_link", "Fresh Fruits")}
                   </Link>
                 </li>
                 <li>
-                  <Link to="/products#frozen-fruits" className="text-body">
+                  <Link to="/products?categoryName=Frozen Fruits" className="text-body">
                     {t("frozen_fruits_link", "Frozen Fruits")}
                   </Link>
                 </li>
                 <li>
-                  <Link to="/products#fresh-vegetables" className="text-body">
+                  <Link to="/products?categoryName=Fresh Vegetables" className="text-body">
                     {t("fresh_vegetables_link", "Fresh Vegetables")}
                   </Link>
                 </li>
                 <li>
-                  <Link to="/products#frozen-vegetables" className="text-body">
+                  <Link to="/products?categoryName=Frozen Vegetables" className="text-body">
                     {t("frozen_vegetables_link", "Frozen Vegetables")}
                   </Link>
                 </li>

@@ -2,8 +2,6 @@ import { useEffect, useRef, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useTranslation } from "../../../contexts/TranslationContext";
 import { fetchData } from "../../../utilis/fetch";
-
-// استيراد المكونات الفرعية الجديدة
 import ContactModel from "../../ContactModel";
 import ContactSection from "../../ContactSection";
 import Modal from "../../Modal";
@@ -30,17 +28,7 @@ const BestSellerSection = () => {
   const prevBtnRef = useRef(null);
   const nextBtnRef = useRef(null);
 
-  const isDownRef = useRef(false);
-  const startXRef = useRef(0);
-  const startYRef = useRef(0);
-  const scrollLeftRef = useRef(0);
-  const isDraggingRef = useRef(false);
-  const clickStartTimeRef = useRef(0);
-
   const scrollAmount = 300;
-  const dragMovementThreshold = 5;
-  const scrollThreshold = 10;
-  const DRAG_SPEED_MULTIPLIER = 3;
 
   const fetchBestSellers = async () => {
     return await fetchData("/products/bestsellers");
@@ -64,99 +52,7 @@ const BestSellerSection = () => {
     if (!slider) {
       return;
     }
-
-    const handleMouseDown = (e) => {
-      isDownRef.current = true;
-      isDraggingRef.current = false;
-      clickStartTimeRef.current = Date.now();
-      slider.classList.add("grabbing");
-      startXRef.current = e.pageX - slider.offsetLeft;
-      scrollLeftRef.current = slider.scrollLeft;
-      e.preventDefault();
-    };
-
-    const handleMouseLeave = () => {
-      isDownRef.current = false;
-      slider.classList.remove("grabbing");
-      isDraggingRef.current = false;
-    };
-
-    const handleMouseUp = () => {
-      isDownRef.current = false;
-      slider.classList.remove("grabbing");
-      // لا نغير isDraggingRef.current هنا بشكل مباشر للسماح بـ onClick بالعمل بشكل صحيح
-    };
-
-    const handleMouseMove = (e) => {
-      if (!isDownRef.current) return;
-      e.preventDefault();
-
-      const walk = (e.pageX - slider.offsetLeft - startXRef.current) * DRAG_SPEED_MULTIPLIER;
-
-      if (Math.abs(walk) > dragMovementThreshold) {
-        isDraggingRef.current = true;
-      }
-      slider.scrollLeft = scrollLeftRef.current - walk;
-    };
-
-    const handleTouchStart = (e) => {
-      isDownRef.current = true;
-      isDraggingRef.current = false;
-      clickStartTimeRef.current = Date.now();
-      const touch = e.touches[0];
-      startXRef.current = touch.pageX - slider.offsetLeft;
-      startYRef.current = touch.pageY;
-      scrollLeftRef.current = slider.scrollLeft;
-    };
-
-    const handleTouchEnd = () => {
-      isDownRef.current = false;
-      isDraggingRef.current = false; // Reset dragging flag on touch end
-    };
-
-    const handleTouchMove = (e) => {
-      if (!isDownRef.current) return;
-
-      const touch = e.touches[0];
-      const x = touch.pageX - slider.offsetLeft;
-      const y = touch.pageY;
-
-      const walkX = (x - startXRef.current) * DRAG_SPEED_MULTIPLIER;
-      const walkY = y - startYRef.current;
-
-      // Determine if it's a drag or a scroll
-      if (Math.abs(walkX) > Math.abs(walkY) && Math.abs(walkX) > dragMovementThreshold) {
-        isDraggingRef.current = true;
-        slider.scrollLeft = scrollLeftRef.current - walkX;
-        e.preventDefault(); // Prevent vertical scrolling if horizontal drag is dominant
-      } else if (Math.abs(walkY) > scrollThreshold && !isDraggingRef.current) {
-        // If vertical scroll is dominant and not yet dragging horizontally
-        isDownRef.current = false;
-        slider.classList.remove("grabbing");
-        isDraggingRef.current = false;
-        return;
-      }
-    };
-
-    slider.addEventListener("mousedown", handleMouseDown);
-    slider.addEventListener("mouseleave", handleMouseLeave);
-    slider.addEventListener("mouseup", handleMouseUp);
-    slider.addEventListener("mousemove", handleMouseMove);
-
-    slider.addEventListener("touchstart", handleTouchStart, { passive: false });
-    slider.addEventListener("touchend", handleTouchEnd);
-    slider.addEventListener("touchmove", handleTouchMove, { passive: false });
-
-    return () => {
-      slider.removeEventListener("mousedown", handleMouseDown);
-      slider.removeEventListener("mouseleave", handleMouseLeave);
-      slider.removeEventListener("mouseup", handleMouseUp);
-      slider.removeEventListener("mousemove", handleMouseMove);
-      slider.removeEventListener("touchstart", handleTouchStart);
-      slider.removeEventListener("touchend", handleTouchEnd);
-      slider.removeEventListener("touchmove", handleTouchMove);
-    };
-  }, [DRAG_SPEED_MULTIPLIER, dragMovementThreshold, scrollThreshold]);
+  }, []); // Dependencies can be empty as we are relying on native scroll
 
   const numberOfSkeletonCards = 4;
 
@@ -178,8 +74,6 @@ const BestSellerSection = () => {
         {/* حاوية جديدة للأزرار والكاروسيل لوضع الأزرار على الجانبين */}
         <div className="carousel-wrapper" data-aos="fade-up">
           {" "}
-          {/* أضفنا هذا الـ div الجديد */}
-          {/* أزرار التنقل (الأسهم) - سيتم وضعها بشكل مطلق داخل carousel-wrapper */}
           {!isLoading && !isError && data.length > 0 && (
             <BestSellerSliderNav
               prevBtnRef={prevBtnRef}
@@ -189,13 +83,23 @@ const BestSellerSection = () => {
             />
           )}
           {/* حاوية الكاروسيل (السلايدر) */}
-          <div className="carousel-container" ref={sliderRef}>
+          <div
+            className="carousel-container"
+            ref={sliderRef}
+            // Add CSS for native horizontal scrolling
+            style={{
+              overflowX: "auto",
+              WebkitOverflowScrolling: "touch",
+              scrollSnapType: "x mandatory",
+            }}
+          >
             <BestSellerContent
               isLoading={isLoading}
               isError={isError}
               data={data}
               numberOfSkeletonCards={numberOfSkeletonCards}
-              isDraggingRef={isDraggingRef}
+              // isDraggingRef is no longer needed if not implementing custom drag logic
+              // You might need to adjust BestSellerContent if it relied on isDraggingRef
               openModal={openModal}
               setCurrentProductName={setCurrentProductName}
               setCurrentProductId={setCurrentProductId}
