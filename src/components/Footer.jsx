@@ -92,23 +92,43 @@ const Footer = ({ isDark }) => {
               <h5>{t("follow_us_heading", "Follow us")}</h5>
               <ul className="list-unstyled mt-3 footer-link">
                 <li>
-                  <a href="https://facebook.com" className="text-body">
+                  <a
+                    target="_blank"
+                    href="https://www.facebook.com/AhlamFoods22"
+                    className="text-body"
+                    rel="noreferrer"
+                  >
                     Facebook
                   </a>
                 </li>
                 <li>
-                  <a href="https://linkedin.com" className="text-body">
-                    LinkedIn
+                  <a
+                    target="_blank"
+                    href="https://www.pinterest.com/ahlamfoods781/"
+                    className="text-body"
+                    rel="noreferrer"
+                  >
+                    Pinterest
                   </a>
                 </li>
                 <li>
-                  <a href="https://instagram.com" className="text-body">
+                  <a
+                    target="_blank"
+                    href="https://www.instagram.com/ahlam_foods/"
+                    className="text-body"
+                    rel="noreferrer"
+                  >
                     Instagram
                   </a>
                 </li>
                 <li>
-                  <a href="https://whatsapp.com" className="text-body">
-                    WhatsApp
+                  <a
+                    target="_blank"
+                    href="https://x.com/AhlamFoods"
+                    className="text-body"
+                    rel="noreferrer"
+                  >
+                    Twitter
                   </a>
                 </li>
               </ul>
@@ -126,7 +146,7 @@ const Footer = ({ isDark }) => {
           {t("Design_contact", "Design your ideal website with us.")}{" "}
           <a
             style={{ textDecoration: "underline", color: "blue" }}
-            href="mailto:betadevstudio@gmail.com"
+            href="mailto:betadevstudio1@gmail.com"
           >
             {t("our_link", "Get started today!")}
           </a>

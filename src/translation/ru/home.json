@@ -13,6 +13,7 @@
   "tons_shipped_annually": "Тонн отгружается ежегодно",
   "international_clients": "Международных клиентов",
   "best_seller_products": "Самые продаваемые товары",
+  "no_best_seller_products_available":"На данный момент нет доступных товаров-бестселлеров.",
   "our_products_heading": "Наши продукты",
   "others_button": "Прочее",
   "why_choose_ahlam_heading": "Почему выбирают",
@@ -63,6 +64,8 @@
   "contact_us_now_button": "Связаться с нами сейчас",
   "error_loading_": "Произошла ошибка при загрузке :",
   "no_categories_found": "На данный момент категории не найдены.",
+  "no_categories_due_to_error":"Категории не могут быть отображены из-за ошибки.",
   "no_products_found": "На данный момент продукты не найдены.",
+  "no_products_due_to_error":"Товары не могут быть отображены из-за ошибки.",
   "refresh": "Обновить"
 }

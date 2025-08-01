@@ -11,12 +11,10 @@ const SubscribeForm = ({ openModal, closeModal }) => {
       email: e.target.elements["email-subscribe"].value,
     };
 
-    console.log("Collected Subscribe Form Data:", formData);
-
     openModal();
 
     try {
-      const apiUrl = "YOUR_ACTUAL_SUBSCRIBE_API_URL_HERE";
+      const apiUrl = "https://api.ahlamfoods.com/api/subscribe";
 
       const response = await fetch(apiUrl, {
         method: "POST",
@@ -31,8 +29,8 @@ const SubscribeForm = ({ openModal, closeModal }) => {
         throw new Error(errorData.message || `Failed to subscribe, status: ${response.status}`);
       }
 
-      const result = await response.json();
-      console.log("Subscription successful:", result);
+      // const result = await response.json();
+      // console.log("Subscription successful:", result);
 
       e.target.reset();
     } catch (error) {

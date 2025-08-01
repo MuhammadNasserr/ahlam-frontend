@@ -28,18 +28,16 @@ const ContactSection = ({
     const form = e.target;
 
     const formData = {
-      request: "Free Sample Request",
-      product_id: currentProductId,
       product_name: currentProductName,
       email: form.elements["email"].value,
-      Company: form.elements["company"].value,
-      Ship_to: form.elements["ship-to"].value,
+      company: form.elements["company"].value,
+      ship_to: form.elements["ship-to"].value,
     };
 
     console.log("Form Data Collected:", formData);
 
     try {
-      const apiUrl = "YOUR_ACTUAL_API_URL_HERE"; // ← ضع رابط الـ API الفعلي هنا
+      const apiUrl = "https://api.ahlamfoods.com/api/company"; // ← ضع رابط الـ API الفعلي هنا
 
       const response = await fetch(apiUrl, {
         method: "POST",

@@ -1,199 +1,5 @@
 @import "bootstrap/dist/css/bootstrap.min.css";
 
-pre {
-  white-space: pre-wrap;
-  /* ده بيسمح للكلام بالنزول لسطر جديد تلقائياً */
-  word-wrap: break-word;
-  /* وده بيضمن إن الكلمات الطويلة جداً تنقسم عشان متعملش overflow */
-  /* الخصائص اللي تحت دي ممكن تكون مفيدة كمان، لكن الأساسي هو اللي فوق */
-  overflow-wrap: break-word;
-  /* بديل أحدث لـ word-wrap */
-  word-break: break-word;
-  /* بيسمح بكسر الكلمات في أي نقطة لو فيه ضرورة */
-}
-
-.carousel-wrapper {
-  position: relative;
-  /* مهم جدًا: هذا يجعل الأزرار المطلقة تتوضع بالنسبة لهذه الحاوية */
-  display: flex;
-  /* لترتيب الكاروسيل والأزرار إذا لم نستخدم absolute */
-  align-items: center;
-  /* لتوسيط الأزرار عموديًا مع الكاروسيل */
-  justify-content: center;
-  /* لتوسيط محتوى الكاروسيل */
-  margin-top: 20px;
-  /* مسافة من الهيدر العلوي */
-  width: 100%;
-  /* اجعلها تأخذ عرض الـ container */
-}
-
-/* ستايل الكاروسيل نفسه */
-.carousel-container {
-  overflow-x: auto;
-  white-space: nowrap;
-  scroll-behavior: smooth;
-  -webkit-overflow-scrolling: touch;
-  /* لتحسين السكرول على iOS */
-  /* الآن الكاروسيل يأخذ العرض الكامل، والأزرار ستكون فوقه */
-  width: 100%;
-  /* اجعل الكاروسيل يأخذ العرض بالكامل */
-  margin: 0;
-  /* لا حاجة لهوامش هنا، الأزرار ستكون فوقه */
-  padding: 0 50px;
-  /* أضف مسافة داخلية (padding) للكاروسيل نفسه، للسماح بظهور جزء من الأزرار أو تجنب تداخلها مع أول وآخر كارت */
-}
-
-/* إخفاء شريط التمرير الافتراضي للمتصفح */
-.carousel-container::-webkit-scrollbar {
-  display: none;
-}
-
-.carousel-container {
-  -ms-overflow-style: none;
-  /* IE and Edge */
-  scrollbar-width: none;
-  /* Firefox */
-}
-
-/* ستايل الأزرار */
-.carousel-prev-btn,
-.carousel-next-btn {
-  position: absolute;
-  /* يجعل الزر يخرج من تدفق المستند الطبيعي */
-  top: 50%;
-  /* يضعه في منتصف الـ wrapper عموديًا */
-  transform: translateY(-50%);
-  /* يرفع الزر بمقدار نصف ارتفاعه لتوسيطه تمامًا */
-  z-index: 10;
-  /* لضمان ظهور الأزرار فوق محتوى الكاروسيل */
-  border: none;
-  padding: 10px 15px;
-  cursor: pointer;
-  border-radius: 50%;
-  /* لجعل الأزرار دائرية */
-  font-size: 1.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 55px;
-  /* لتحديد حجم الزر */
-  height: 55px;
-  /* لتحديد حجم الزر */
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-  /* لإضافة ظل بسيط */
-  transition:
-    background-color 0.3s ease,
-    color 0.3s ease;
-}
-
-.carousel-prev-btn {
-  left: 10px;
-  /* ضع زر السابق على بعد 10 بكسل من اليسار (سيكون فوق الكاروسيل) */
-}
-
-.carousel-next-btn {
-  right: 10px;
-  /* ضع زر التالي على بعد 10 بكسل من اليمين (سيكون فوق الكاروسيل) */
-}
-
-/* إذا كنت ترغب في تصغير حجم الأزرار قليلاً على الشاشات الأصغر */
-@media (max-width: 330px) {
-  .carousel-item {
-    height: 170vh !important;
-  }
-}
-
-@media (max-width: 576px) {
-  .carousel-container {
-    /* قلل الـ padding الداخلي إذا كانت الأزرار أصغر لتعظيم مساحة المحتوى */
-    padding: 0 30px;
-  }
-
-  .carousel-prev-btn {
-    left: 5px;
-    /* قرب الزر أكثر من الحافة */
-  }
-
-  .carousel-next-btn {
-    right: 20px;
-    /* قرب الزر أكثر من الحافة */
-  }
-}
-
-/*-------*/
-.contact-section h2,
-.contact-section h5 {
-  color: var(--green-color);
-  font-size: 22px;
-}
-
-.contact-section input,
-textarea {
-  background-color: rgb(238, 238, 238) !important;
-  border-radius: 12px;
-  padding: 20px 30px !important;
-  box-shadow: none !important;
-  border: none !important;
-}
-
-.contact-section button {
-  border-radius: 12px;
-  padding: 15px;
-}
-
-.product-card-fetch {
-  border: 1px solid var(--border);
-  border-radius: 26px;
-  background-color: var(--white-color);
-  padding: 10px !important;
-  color: var(--heading-color);
-}
-
-.product-card-fetch button {
-  background-color: var(--green-color) !important;
-  color: #fff !important;
-  border-radius: 16px;
-}
-
-.dangerous-description section {
-  padding: 0 !important;
-}
-
-.dangerous-description h1,
-.dangerous-description h2 {
-  margin: 30px 0;
-  color: var(--green-color);
-}
-
-.skeleton {
-  background-color: #e0e0e0;
-  box-shadow: 0 4px 8px rgba(153, 153, 153, 0.5);
-  border-radius: 4px;
-}
-
-.skeleton-image {
-  background-color: #e0e0e0;
-  box-shadow: 0 4px 8px rgba(153, 153, 153, 0.5);
-  border-radius: 4px;
-}
-
-.skeleton-text {
-  background-color: #e0e0e0;
-  box-shadow: 0 4px 8px rgba(153, 153, 153, 0.5);
-  border-radius: 4px;
-}
-
-@keyframes skeleton-loading {
-  0% {
-    background-position: 200% 0;
-  }
-
-  100% {
-    background-position: -200% 0;
-  }
-}
-
-/*---------------------------------------------------------*/
 html {
   scroll-behavior: smooth;
 }
@@ -266,7 +72,15 @@ body {
   text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
 }
-
+/*----------*/
+.page-link {
+  color: black !important;
+}
+.active>.page-link, .page-link.active {
+  color: #fff !important;
+  background-color: var(--green-color);
+border-color: var(--green-color);
+}
 /*-------------------------  Nav  ------------------------ */
 
 nav {
@@ -363,9 +177,59 @@ nav .navbar-nav li {
 
 /* القائمه الي بتظهر من الدروب الداخليه (second drop down Child)*/
 .dropdown-submenu {
-  left: 110% !important;
+  left: 90% !important;
   top: 0;
 }
+
+/* --- Custom Dropdown Hover Styles --- */
+.dropdown-menu {
+  display: none;
+  transition: opacity 0.15s ease-in-out, transform 0.15s ease-in-out;
+  opacity: 0;
+  transform: translateY(10px);
+  pointer-events: none;
+}
+.dropdown-menu li{
+  margin: 0;
+}
+
+.dropdownn:hover > .dropdown-menu {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.dropdown-submenu {
+  position: absolute;
+  left: 100%;
+  top: 0;
+  margin-left: 0.125rem;
+  margin-top: -1px;
+}
+
+.dropend:hover > .dropdown-menu {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.dropdown-item {
+  padding: 0.5rem 1rem;
+  color: var(--text-color);
+  white-space: nowrap;
+}
+
+.dropdown-menu.show {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+/*-------*/
+
 
 /*------------------- language select ----------------*/
 .lang-dropdown .language-container {
@@ -634,7 +498,126 @@ footer .copy-right {
 
 /*---------------------------------------------------------------------------*/
 /*---------------------------------------------------------------------------*/
+pre {
+  font-family: inherit;
+  white-space: pre-wrap;
+  /* ده بيسمح للكلام بالنزول لسطر جديد تلقائياً */
+  word-wrap: break-word;
+  /* وده بيضمن إن الكلمات الطويلة جداً تنقسم عشان متعملش overflow */
+  /* الخصائص اللي تحت دي ممكن تكون مفيدة كمان، لكن الأساسي هو اللي فوق */
+  overflow-wrap: break-word;
+  /* بديل أحدث لـ word-wrap */
+  word-break: break-word;
+  /* بيسمح بكسر الكلمات في أي نقطة لو فيه ضرورة */
+}
 
+.carousel-wrapper {
+  position: relative;
+  /* مهم جدًا: هذا يجعل الأزرار المطلقة تتوضع بالنسبة لهذه الحاوية */
+  display: flex;
+  /* لترتيب الكاروسيل والأزرار إذا لم نستخدم absolute */
+  align-items: center;
+  /* لتوسيط الأزرار عموديًا مع الكاروسيل */
+  justify-content: center;
+  /* لتوسيط محتوى الكاروسيل */
+  margin-top: 20px;
+  /* مسافة من الهيدر العلوي */
+  width: 100%;
+  /* اجعلها تأخذ عرض الـ container */
+}
+
+/* ستايل الكاروسيل نفسه */
+.carousel-container {
+  overflow-x: auto;
+  white-space: nowrap;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  /* لتحسين السكرول على iOS */
+  /* الآن الكاروسيل يأخذ العرض الكامل، والأزرار ستكون فوقه */
+  width: 100%;
+  /* اجعل الكاروسيل يأخذ العرض بالكامل */
+  margin: 0;
+  /* لا حاجة لهوامش هنا، الأزرار ستكون فوقه */
+  padding: 0 50px;
+  /* أضف مسافة داخلية (padding) للكاروسيل نفسه، للسماح بظهور جزء من الأزرار أو تجنب تداخلها مع أول وآخر كارت */
+}
+
+/* إخفاء شريط التمرير الافتراضي للمتصفح */
+.carousel-container::-webkit-scrollbar {
+  display: none;
+}
+
+.carousel-container {
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
+}
+
+/* ستايل الأزرار */
+.carousel-prev-btn,
+.carousel-next-btn {
+  position: absolute;
+  /* يجعل الزر يخرج من تدفق المستند الطبيعي */
+  top: 50%;
+  /* يضعه في منتصف الـ wrapper عموديًا */
+  transform: translateY(-50%);
+  /* يرفع الزر بمقدار نصف ارتفاعه لتوسيطه تمامًا */
+  z-index: 10;
+  /* لضمان ظهور الأزرار فوق محتوى الكاروسيل */
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  border-radius: 50%;
+  /* لجعل الأزرار دائرية */
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 55px;
+  /* لتحديد حجم الزر */
+  height: 55px;
+  /* لتحديد حجم الزر */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  /* لإضافة ظل بسيط */
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+
+.carousel-prev-btn {
+  left: 10px;
+  /* ضع زر السابق على بعد 10 بكسل من اليسار (سيكون فوق الكاروسيل) */
+}
+
+.carousel-next-btn {
+  right: 10px;
+  /* ضع زر التالي على بعد 10 بكسل من اليمين (سيكون فوق الكاروسيل) */
+}
+
+/* إذا كنت ترغب في تصغير حجم الأزرار قليلاً على الشاشات الأصغر */
+@media (max-width: 330px) {
+  .carousel-item {
+    height: 170vh !important;
+  }
+}
+
+@media (max-width: 576px) {
+  .carousel-container {
+    /* قلل الـ padding الداخلي إذا كانت الأزرار أصغر لتعظيم مساحة المحتوى */
+    padding: 0 30px;
+  }
+
+  .carousel-prev-btn {
+    left: 5px;
+    /* قرب الزر أكثر من الحافة */
+  }
+
+  .carousel-next-btn {
+    right: 20px;
+    /* قرب الزر أكثر من الحافة */
+  }
+}
 /*------------ FAQS-Page  -------- */
 footer {
   background-color: var(--white-color) !important;
@@ -842,6 +825,7 @@ header .dropdown-toggle::after {
 }
 
 @keyframes fa-shake {
+
   10%,
   90% {
     transform: translate3d(-0.5px, 0, 0);
@@ -999,6 +983,7 @@ header .dropdown-toggle::after {
   transform: translateY(-10px);
 } */
 @media (hover: hover) {
+
   /*hover heereee*/
   .best-seller .product-card a:hover .card-body .card-image img {
     transform: scale(1.2);
@@ -1290,7 +1275,87 @@ textarea {
 }
 
 /*-----------------------------------------------------------------------*/
+
+/*--------- contact section ---------------------------*/
+
+.contact-section h2,
+.contact-section h5 {
+  color: var(--green-color);
+  font-size: 22px;
+}
+
+.contact-section input,
+textarea {
+  background-color: rgb(238, 238, 238) !important;
+  border-radius: 12px;
+  padding: 20px 30px !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+.contact-section button {
+  border-radius: 12px;
+  padding: 15px;
+}
+
+
 /*-----------------------------------------------------------------------*/
+
+/*--------- product details ---------------------------*/
+
+.product-card-fetch {
+  border: 1px solid var(--border);
+  border-radius: 26px;
+  background-color: var(--white-color);
+  padding: 10px !important;
+  color: var(--heading-color);
+}
+
+.product-card-fetch button {
+  background-color: var(--green-color) !important;
+  color: #fff !important;
+  border-radius: 16px;
+}
+
+.dangerous-description section {
+  padding: 0 !important;
+}
+
+.dangerous-description h1,
+.dangerous-description h2 {
+  margin: 30px 0;
+  color: var(--green-color);
+}
+
+.skeleton {
+  background-color: #e0e0e0;
+  box-shadow: 0 4px 8px rgba(153, 153, 153, 0.5);
+  border-radius: 4px;
+}
+
+.skeleton-image {
+  background-color: #e0e0e0;
+  box-shadow: 0 4px 8px rgba(153, 153, 153, 0.5);
+  border-radius: 4px;
+}
+
+.skeleton-text {
+  background-color: #e0e0e0;
+  box-shadow: 0 4px 8px rgba(153, 153, 153, 0.5);
+  border-radius: 4px;
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-position: 200% 0;
+  }
+
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/*---------------------------------------------------------*/
 @media (max-width: 768px) {
   .contact-section h2 {
     font-size: 30px !important;
@@ -1454,16 +1519,17 @@ textarea {
 }
 
 @media (min-width: 768px) {
+
   /* Send Message */
   .send-message .content form .input {
     width: calc(50% - 8px) !important;
   }
 }
 
-@media (min-width: 768px) and (max-width: 992px) {
-}
+@media (min-width: 768px) and (max-width: 992px) {}
 
 @media (max-width: 992px) {
+
   /*-------------------------  Nav  ------------------------ */
   /*------------------ Container of Pages (ul) ---------------- */
   nav .navbar-nav {
@@ -1480,6 +1546,7 @@ textarea {
 }
 
 @media (min-width: 992px) {
+
   /*-------------------------  Nav  ------------------------ */
   /*---------------- Side Menu -----------------------*/
   .side-menu {
@@ -1487,8 +1554,6 @@ textarea {
   }
 }
 
-@media (min-width: 992px) and (max-width: 1200px) {
-}
+@media (min-width: 992px) and (max-width: 1200px) {}
 
-@media (min-width: 1200px) {
-}
+@media (min-width: 1200px) {}

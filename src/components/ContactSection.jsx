@@ -13,12 +13,7 @@ const ContactSection = ({
   submittedForm,
   unSubmittedForm,
 }) => {
-  // --- START: استخدام useTranslation Hook ---
   const { t } = useTranslation();
-  // --- END: استخدام useTranslation Hook ---
-
-  // Product data
-  // تعريف الـ benefits هنا باستخدام مفاتيح الترجمة والنصوص الإنجليزية الأصلية
   const benefits = [
     {
       title_key: "newsletter_title",
@@ -54,10 +49,8 @@ const ContactSection = ({
       message: form.elements["message"].value,
     };
 
-    console.log("Form Data Collected:", formData);
-
     try {
-      const apiUrl = "YOUR_ACTUAL_API_URL_HERE"; // ← ضع رابط الـ API الفعلي هنا
+      const apiUrl = "https://api.ahlamfoods.com/api/product"; // ← ضع رابط الـ API الفعلي هنا
 
       const response = await fetch(apiUrl, {
         method: "POST",
@@ -72,8 +65,8 @@ const ContactSection = ({
         throw new Error(errorData.message || `Error: ${response.status}`);
       }
 
-      const result = await response.json();
-      console.log("Message sent successfully:", result);
+      // const result = await response.json();
+      // console.log("Message sent successfully:", result);
 
       form.reset(); // تفريغ النموذج
     } catch (error) {

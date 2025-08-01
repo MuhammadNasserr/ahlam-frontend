@@ -5,8 +5,8 @@
   "fruits": "Fruits",
   "vegetables": "Légumes",
   "fresh": "Frais",
-  "citrus": "Agrumes",
-  "spices_herbs": "Épices et Herbes",
+  "dates": "dattes ",
+  "spices_herbs": "Herbes",
   "pickles": "Cornichons",
   "others_category": "Autres",
   "faqs": "FAQ",
@@ -53,5 +53,7 @@
   "Request_Sample": "Demandez votre échantillon gratuit",
   "Request_Price": "Demander le prix du produit",
   "Design_contact": "Concevez votre site web idéal avec nous.",
-  "our_link": "Commencez dès aujourd'hui!"
+  "our_link": "Commencez dès aujourd'hui!",
+  "whatsapp_default_message": "Bonjour! Comment puis-je vous aider?",
+  "whatsapp_button_title": "Contactez-nous via WhatsApp"
 }

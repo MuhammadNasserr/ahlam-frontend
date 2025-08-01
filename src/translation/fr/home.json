@@ -12,6 +12,7 @@
   "tons_shipped_annually": "Tonnes expédiées annuellement",
   "international_clients": "Clients internationaux",
   "best_seller_products": "Meilleurs produits vendeurs",
+  "no_best_seller_products_available":"Aucun produit le plus vendu n'est disponible pour le moment.",
   "our_products_heading": "Nos Produits",
   "others_button": "Autres",
   "why_choose_ahlam_heading": "Pourquoi choisir",
@@ -62,6 +63,8 @@
   "contact_us_now_button": "Contactez-nous maintenant",
   "error_loading_": "Une erreur est survenue lors du chargement :",
   "no_categories_found": "Aucune catégorie n'a été trouvée pour le moment.",
+  "no_categories_due_to_error":"Aucune catégorie n'a pu être affichée en raison d'une erreur.",
+  "no_products_due_to_error":" Aucun produit n'a pu être affiché en raison d'une erreur.",
   "no_products_found": "Aucun produit n'a été trouvé pour le moment.",
   "refresh": "Actualiser"
 }

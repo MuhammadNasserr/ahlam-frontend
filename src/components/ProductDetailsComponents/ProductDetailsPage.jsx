@@ -130,7 +130,8 @@ export const ProductDetailsPage = ({ id }) => {
         </div>
 
         {/* Product Description */}
-        <ProductDescription description={details?.description} />
+        {/* temporary */}
+        {/* <ProductDescription description={details?.description} /> */}
       </div>
     </div>
   );

@@ -12,7 +12,7 @@ const OurProductsSection = () => {
   // const [loading, setLoading] = useState(true);
   // const [error, setError] = useState(null);
 
-  const API_BASE_URL = "https://api.ahlamfoods.com"; // Still needed for image paths
+  const BASE_Image_URL = "https://api.ahlamfoods.com"; // Still needed for image paths
 
   // ✨ Use useQuery for fetching categories
   const {
@@ -130,7 +130,7 @@ const OurProductsSection = () => {
                   style={{ backgroundColor: "var(--white-color)" }}
                 >
                   <img
-                    src={cat.image ? `${API_BASE_URL}${cat.image}` : ""}
+                    src={cat.image ? `${BASE_Image_URL}${cat.image}` : ""}
                     width={280}
                     height={270}
                     className="card-img-top mb-3 img-fluid"

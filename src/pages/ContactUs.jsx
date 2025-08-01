@@ -33,7 +33,7 @@ const ContactUs = () => {
         </Suspense>
       </Modal>
       <div style={{ zIndex: -10 }}>
-        <a href="#location">
+        <a href="https://maps.app.goo.gl/yzZKLr5DCAZwJ9Ln9" target="_blank" rel="noreferrer">
           <img
             style={{
               width: "100%",

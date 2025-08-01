@@ -10,8 +10,8 @@ const SendMessage = ({ openModal, closeModal, message }) => {
 
     // 1. جمع بيانات النموذج
     const formData = {
-      fullName: e.target.elements["full-name"].value,
-      companyName: e.target.elements["company-name"].value,
+      "full-name": e.target.elements["full-name"].value,
+      "company-name": e.target.elements["company-name"].value,
       email: e.target.elements["email"].value,
       phone: e.target.elements["phone"].value,
       message: e.target.elements["message"].value,
@@ -23,18 +23,7 @@ const SendMessage = ({ openModal, closeModal, message }) => {
     openModal();
 
     try {
-      // 3. **هنا هو المكان الذي ستضع فيه رابط الـ API الفعلي**
-
-      // قم بإزالة السطر الخاص بالمحاكاة:
-      // await new Promise(resolve => setTimeout(resolve, 1500));
-
-      // وضع استدعاء الـ fetch API الحقيقي هنا:
-      // ستحتاج إلى استبدال 'YOUR_ACTUAL_API_URL_HERE' بالرابط الفعلي الذي ستحصل عليه.
-      // أمثلة على الروابط:
-      // const apiUrl = 'https://api.yourwebsite.com/contact-form';
-      // const apiUrl = 'http://localhost:3001/messages'; // لو كان API محليًا للتطوير
-
-      const apiUrl = "YOUR_ACTUAL_API_URL_HERE"; // <--- ضع رابط الـ API هنا!
+      const apiUrl = "https://api.ahlamfoods.com/api/contactus"; // <--- ضع رابط الـ API هنا!
 
       const response = await fetch(apiUrl, {
         method: "POST", // غالباً ستستخدم POST لإرسال بيانات نموذج

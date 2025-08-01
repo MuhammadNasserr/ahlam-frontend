@@ -69,9 +69,11 @@ export const GetInTouch = () => {
                   </span>
                 </div>
                 <a
-                  href=""
+                  target="_blank"
+                  href="https://maps.app.goo.gl/yzZKLr5DCAZwJ9Ln9"
                   className="text-decoration-underline d-inline-block mt-3"
                   style={{ color: "var(--gray-color)" }}
+                  rel="noreferrer"
                 >
                   {t("address_text", "Banha, Qalyubia, Egypt")}
                 </a>
@@ -94,9 +96,9 @@ export const GetInTouch = () => {
                 <a
                   className="text-decoration-underline d-inline-block mt-3"
                   style={{ color: "var(--gray-color)" }}
-                  href="mailto:info@elahlam.com"
+                  href="mailto:info@ahlamfoods.com"
                 >
-                  info@elahlam.com
+                  info@ahlamfoods.com
                 </a>
               </li>
 
@@ -119,7 +121,7 @@ export const GetInTouch = () => {
                   style={{ color: "var(--gray-color)" }}
                   href="tel:+201100077016"
                 >
-                  01100077016
+                  +201100077016
                 </a>
               </li>
             </ul>

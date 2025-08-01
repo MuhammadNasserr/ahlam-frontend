@@ -27,19 +27,19 @@ export const RelatedProducts = (props) => {
       </h3>
       <div className="row">
         {relatedProducts.map((product) => (
-          <div
-            className="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-3 mb-4"
-            key={product.id}
-            style={{
-              opacity: `${product.is_available ? "1" : "0.65"}`,
-            }}
-          >
+          <div className="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-3 mb-4" key={product.id}>
             <div className=" product-card-fetch h-100 shadow-sm p-2" data-aos="fade-up">
               <Link to={`/products/${product.id}`} className="d-block text-decoration-none">
                 <div className="position-relative mb-2">
                   <span
                     className={`badge text-white position-absolute ${
-                      product.is_available === false ? "bg-danger" : "bg-success"
+                      product.is_available === "Unavailable"
+                        ? "bg-danger"
+                        : product.is_available === "Available"
+                          ? "bg-success"
+                          : product.is_available === "Soon"
+                            ? "bg-primary"
+                            : ""
                     }`}
                     style={{
                       top: "10px",
@@ -48,9 +48,7 @@ export const RelatedProducts = (props) => {
                       padding: "5px 15px",
                     }}
                   >
-                    {product.is_available === false
-                      ? `${t("Unavailable", "Unavailable")}`
-                      : `${t("available", "available")}`}
+                    {product.is_available}
                   </span>
                   <img
                     src={`${baseImageUrl}${product?.main_image}`}
@@ -64,8 +62,9 @@ export const RelatedProducts = (props) => {
                     loading="lazy"
                   />
                 </div>
-                <div>
-                  <p
+                <div className="ps-2">
+                  {/* temporary */}
+                  {/* <p
                     className="my-3"
                     style={{
                       color: "var(--sub-text)",
@@ -73,7 +72,7 @@ export const RelatedProducts = (props) => {
                     }}
                   >
                     {product.subdescription?.slice(0, 30)}...
-                  </p>
+                  </p> */}
                   <p className="fw-bold mb-2" style={{ fontSize: "18px" }}>
                     {product.name}
                   </p>
@@ -86,7 +85,6 @@ export const RelatedProducts = (props) => {
                   openModal();
                 }}
                 className="btn w-100 my-2"
-                disabled={!product.is_available}
               >
                 {t("Quick Inquire", "Quick Inquire")}
               </button>

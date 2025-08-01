@@ -1,44 +1,19 @@
-import React, { useState, useEffect } from "react";
-import { NavLink, Link } from "react-router-dom"; // استيراد useLocation
+import React, { useEffect } from "react";
+import { NavLink, Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
 
 export const ProductDropdown = ({ t, isMainProductsActive }) => {
-  // تم نقل هذه الحالات إلى هنا
-  const [showFrozenDropdown, setShowFrozenDropdown] = useState(false);
-  const [showFreshDropdown, setShowFreshDropdown] = useState(false);
-
-  const handleFrozenDropdownToggle = (event) => {
-    event.preventDefault();
-    event.stopPropagation();
-    setShowFrozenDropdown((prev) => !prev);
-    setShowFreshDropdown(false);
-  };
-
-  const handleFreshDropdownToggle = (event) => {
-    event.preventDefault();
-    event.stopPropagation();
-    setShowFreshDropdown((prev) => !prev);
-    setShowFrozenDropdown(false);
-  };
-
-  // التأكد من إغلاق القوائم المنسدلة عند النقر خارجها
+  // The useEffect for closing dropdowns on outside clicks is still necessary
+  // as pure CSS hover doesn't manage global clicks.
   useEffect(() => {
     const handleDocumentClick = (event) => {
-      const productsDropdown = document.getElementById("productsDropdown");
-      const frozenDropdownLink = document.getElementById("frozenDropdownLink");
-      const freshDropdownLink = document.getElementById("freshDropdownLink");
-
-      if (
-        productsDropdown &&
-        !productsDropdown.contains(event.target) &&
-        frozenDropdownLink &&
-        !frozenDropdownLink.contains(event.target) &&
-        freshDropdownLink &&
-        !freshDropdownLink.contains(event.target)
-      ) {
-        setShowFrozenDropdown(false);
-        setShowFreshDropdown(false);
+      const dropdownContainer = document.getElementById("productsDropdownContainer");
+      if (dropdownContainer && !dropdownContainer.contains(event.target)) {
+        // Find any 'show' classes on dropdown menus within this container and remove them
+        dropdownContainer.querySelectorAll(".dropdown-menu.show").forEach((menu) => {
+          menu.classList.remove("show");
+        });
       }
     };
 
@@ -46,22 +21,22 @@ export const ProductDropdown = ({ t, isMainProductsActive }) => {
     return () => {
       document.removeEventListener("click", handleDocumentClick);
     };
-  }, []);
-
-  // وظيفة لتحديد إذا ما كان الرابط نشطًا، ويمكن استخدامها هنا مباشرة أو تمريرها
+  }, []); // Empty dependency array means this runs once on mount
 
   return (
-    <li className="nav-item dropdown">
+    <li
+      className="nav-item dropdownn"
+      id="productsDropdownContainer" // Important for the click-outside logic
+    >
       <NavLink
         className={({ isActive }) =>
           `nav-link dropdown-toggle d-flex align-items-center ${
             isActive || isMainProductsActive() ? "active" : ""
           }`
         }
-        to="/products"
+        to="/products" // Clicking "Products" navigates to /products
         id="productsDropdown"
         role="button"
-        data-bs-toggle="dropdown"
         end
       >
         {t("products", "Products")}
@@ -73,32 +48,22 @@ export const ProductDropdown = ({ t, isMainProductsActive }) => {
         />
       </NavLink>
       <ul
-        className="dropdown-menu"
+        className="dropdown-menu" // CSS will add/remove 'show'
         aria-labelledby="productsDropdown"
-        style={{ backgroundColor: "var(--bg-color)", width: "200px" }}
+        style={{ backgroundColor: "var(--bg-color)", width: "150px" }}
       >
-        {/* Frozen */}
-        <li className={`dropend ${showFrozenDropdown ? "show" : ""}`}>
-          <button
-            className="dropdown-item has-submenu"
-            onClick={handleFrozenDropdownToggle}
-            id="frozenDropdownLink"
-            style={{
-              cursor: "pointer",
-              border: "none",
-              background: "none",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between",
-              width: "100%",
-            }}
+        {/* Frozen dropdown */}
+        <li className="dropend">
+          <Link
+            className="dropdown-item d-flex align-items-center justify-content-between"
+            to="/products?categoryName=Frozen" // Clicking "Frozen" navigates
           >
             {t("frozen", "Frozen")}
-          </button>
+            <FontAwesomeIcon icon={faAngleDown} rotation={270} />
+          </Link>
           <ul
-            className={`dropdown-menu dropdown-submenu ${showFrozenDropdown ? "show" : ""}`}
+            className="dropdown-menu dropdown-submenu" // CSS will handle 'show'
             style={{
-              display: showFrozenDropdown ? "block" : "none",
               backgroundColor: "var(--bg-color)",
             }}
           >
@@ -115,28 +80,18 @@ export const ProductDropdown = ({ t, isMainProductsActive }) => {
           </ul>
         </li>
 
-        {/* Fresh */}
-        <li className={`dropend ${showFreshDropdown ? "show" : ""}`}>
-          <button
-            className="dropdown-item has-submenu"
-            onClick={handleFreshDropdownToggle}
-            id="freshDropdownLink"
-            style={{
-              cursor: "pointer",
-              border: "none",
-              background: "none",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between",
-              width: "100%",
-            }}
+        {/* Fresh dropdown */}
+        <li className="dropend">
+          <Link
+            className="dropdown-item d-flex align-items-center justify-content-between"
+            to="/products?categoryName=Fresh" // Clicking "Fresh" navigates
           >
             {t("fresh", "Fresh")}
-          </button>
+            <FontAwesomeIcon icon={faAngleDown} rotation={270} />
+          </Link>
           <ul
-            className={`dropdown-menu dropdown-submenu ${showFreshDropdown ? "show" : ""}`}
+            className="dropdown-menu dropdown-submenu" // CSS will handle 'show'
             style={{
-              display: showFreshDropdown ? "block" : "none",
               backgroundColor: "var(--bg-color)",
             }}
           >
@@ -153,23 +108,20 @@ export const ProductDropdown = ({ t, isMainProductsActive }) => {
           </ul>
         </li>
 
-        {/* Others categories */}
+        {/* Other categories */}
         <li>
-          <Link className="dropdown-item" to="/products?categoryName=Citrus">
-            {t("citrus", "Citrus")}
-          </Link>
-        </li>
-        <li>
-          <Link
-            className="dropdown-item"
-            to={`/products?categoryName=${encodeURIComponent("Spices & Herbs")}`}
-          >
-            {t("spices_herbs", "Spices & Herbs")}
+          <Link className="dropdown-item" to="/products?categoryName=Herbs">
+            {t("spices_herbs", "Herbs")}
           </Link>
         </li>
         <li>
           <Link className="dropdown-item" to="/products?categoryName=Pickles">
             {t("pickles", "Pickles")}
+          </Link>
+        </li>
+        <li>
+          <Link className="dropdown-item" to="/products?categoryName=Dates">
+            {t("dates", "Dates")}
           </Link>
         </li>
         <li>

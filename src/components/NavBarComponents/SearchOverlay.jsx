@@ -186,12 +186,13 @@ export const SearchOverlay = ({ t }) => {
                           __html: highlightText(product.name, searchInput),
                         }}
                       ></div>
-                      <div
+                      {/* temporary */}
+                      {/* <div
                         className="subdescription"
                         dangerouslySetInnerHTML={{
                           __html: highlightText(product.subdescription?.slice(0, 50), searchInput),
                         }}
-                      ></div>
+                      ></div> */}
                     </div>
                   </Link>
                 </div>

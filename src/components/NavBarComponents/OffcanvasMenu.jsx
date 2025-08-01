@@ -198,18 +198,10 @@ export const OffcanvasMenu = ({
               {/* Others categories */}
               <li>
                 <Link
-                  className={`nav-link ${isSideLinkActive("Citrus") ? "side-active" : ""}`}
-                  to="/products?categoryName=Citrus"
+                  className={`nav-link ${isSideLinkActive("Herbs") ? "side-active" : ""}`}
+                  to="/products?categoryName=Herbs"
                 >
-                  {t("citrus", "Citrus")}
-                </Link>
-              </li>
-              <li>
-                <Link
-                  className={`nav-link ${isSideLinkActive("Spices & Herbs") ? "side-active" : ""}`}
-                  to={`/products?categoryName=${encodeURIComponent("Spices & Herbs")}`}
-                >
-                  {t("spices_herbs", "Spices & Herbs")}
+                  {t("spices_herbs", "Herbs")}
                 </Link>
               </li>
               <li>
@@ -218,6 +210,14 @@ export const OffcanvasMenu = ({
                   to="/products?categoryName=Pickles"
                 >
                   {t("pickles", "Pickles")}
+                </Link>
+              </li>
+              <li>
+                <Link
+                  className={`nav-link ${isSideLinkActive("Dates") ? "side-active" : ""}`}
+                  to="/products?categoryName=Dates"
+                >
+                  {t("dates", "Dates")}
                 </Link>
               </li>
               <li>

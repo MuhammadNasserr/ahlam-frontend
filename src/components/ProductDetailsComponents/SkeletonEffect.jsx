@@ -62,7 +62,10 @@ const SkeletonEffect = () => {
         <div className="py-5">
           <ul
             className="d-flex gap-3 pb-2 mb-2"
-            style={{ borderBottom: "1px solid var(--border)" }}
+            style={{
+              borderBottom: "1px solid var(--border)",
+              overflow: "hidden",
+            }}
           >
             {[1, 2, 3, 4].map(
               (

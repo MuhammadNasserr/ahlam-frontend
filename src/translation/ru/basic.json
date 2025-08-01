@@ -5,8 +5,8 @@
   "fruits": "Фрукты",
   "vegetables": "Овощи",
   "fresh": "Свежие",
-  "citrus": "Цитрусовые",
-  "spices_herbs": "Специи и Травы",
+  "dates": "финики ",
+  "spices_herbs": "Травы",
   "pickles": "Соленья",
   "others_category": "Прочее",
   "faqs": "ЧаВо",
@@ -53,5 +53,8 @@
   "Request_Sample": "Запросите ваш бесплатный образец",
   "Request_Price": "Запросить цену продукта",
   "Design_contact": "Разработайте свой идеальный сайт с нами.",
-  "our_link": "Начните сегодня!"
+  "our_link": "Начните сегодня!",
+  "whatsapp_default_message": "Здравствуйте! Чем могу помочь?",
+  " whatsapp_button_title": "Свяжитесь с нами через WhatsApp"
+
 }

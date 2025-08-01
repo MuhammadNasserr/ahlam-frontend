@@ -5,7 +5,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { fetchData } from "../../utilis/fetch";
 import { useTranslation } from "../../contexts/TranslationContext";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSyncAlt } from "@fortawesome/free-solid-svg-icons"; // استيراد الأيقونة هنا
+import { faSyncAlt } from "@fortawesome/free-solid-svg-icons";
 
 import ProductCategoriesSidebar from "./ProductCategoriesSidebar";
 import ProductGrid from "./ProductGrid";
@@ -21,11 +21,13 @@ const FetchProducts = () => {
   const containerRef = useRef(null);
   const location = useLocation();
   const navigate = useNavigate();
-  const { t, locale } = useTranslation(); // إضافة t هنا
+  const { t, locale } = useTranslation();
 
   const initialCategoryCount = 8;
   const [showAllCategories, setShowAllCategories] = useState(false);
   const [selectedCategoryId, setSelectedCategoryId] = useState(null);
+  const [currentPage, setCurrentPage] = useState(1); // New state for current page
+  const productsPerPage = 12; // Number of products per page
 
   // Modal states for product inquiry
   const [isOpen, setIsOpen] = useState(false);
@@ -53,6 +55,8 @@ const FetchProducts = () => {
         behavior: "smooth",
       });
     }
+    // Reset to first page when category changes
+    setCurrentPage(1);
   }, [location.search]);
 
   // Fetch categories using react-query
@@ -91,7 +95,6 @@ const FetchProducts = () => {
         setShowAllCategories(false);
       }
     } else if (nameFromUrl === "isAllProducts" || nameFromUrl === null) {
-      // Handle "isAllProducts" specifically
       setSelectedCategoryId(null);
       setShowAllCategories(false);
     }
@@ -114,6 +117,20 @@ const FetchProducts = () => {
     staleTime: 0,
   });
 
+  // Calculate total pages
+  const totalPages = Math.ceil(products.length / productsPerPage);
+
+  // Get current products for the page
+  const indexOfLastProduct = currentPage * productsPerPage;
+  const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
+  const currentProducts = products.slice(indexOfFirstProduct, indexOfLastProduct);
+
+  // Handle page change
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+    window.scrollTo({ top: containerRef.current.offsetTop - 80, behavior: "smooth" }); // Scroll to top of products on page change
+  };
+
   // Determine if there's any error
   const hasOverallError = categoriesError || productsError;
   const isLoadingAnything = categoriesLoading || productsLoading;
@@ -130,12 +147,10 @@ const FetchProducts = () => {
 
   const handleCategorySelect = (categoryName) => {
     navigate(`/products?categoryName=${encodeURIComponent(categoryName)}`);
-    // selectedCategoryId and showAllCategories will be updated by the useEffect based on URL change
   };
 
   const handleAllProductsSelect = () => {
-    navigate("/products?categoryName=isAllProducts"); // Use a distinct query param for "All"
-    // selectedCategoryId and showAllCategories will be updated by the useEffect based on URL change
+    navigate("/products?categoryName=isAllProducts");
   };
 
   const handleQuickInquire = (productId, productName) => {
@@ -159,7 +174,7 @@ const FetchProducts = () => {
         <Confirm />
       </Modal>
       <div className="container py-4" ref={containerRef}>
-        {hasOverallError ? ( // عرض رسالة الخطأ وزر التحديث هنا
+        {hasOverallError ? (
           <div
             className="alert alert-danger d-flex flex-column align-items-center justify-content-center text-center mx-auto"
             role="alert"
@@ -191,10 +206,14 @@ const FetchProducts = () => {
             />
 
             <ProductGrid
-              products={products}
+              products={currentProducts} // Pass only products for the current page
               productsLoading={productsLoading}
               baseImageUrl={baseImageUrl}
               onQuickInquire={handleQuickInquire}
+              currentPage={currentPage} // Pass current page
+              totalPages={totalPages} // Pass total pages
+              onPageChange={handlePageChange} // Pass page change handler
+              productsCount={products.length} // Pass total count for "no products" message
             />
           </div>
         )}

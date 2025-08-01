@@ -12,18 +12,18 @@ const GetCustomQuote = ({ name, openModal, closeModal, message, status }) => {
 
     // 1. جمع بيانات النموذج
     const formData = {
-      fullName: e.target.elements["full-name"].value,
-      companyName: e.target.elements["company-name"].value,
+      full_name: e.target.elements["full-name"].value,
+      company_name: e.target.elements["company-name"].value,
       email: e.target.elements["email"].value,
       phone: e.target.elements["phone"].value,
-      productType: e.target.elements["product-type"].value, // This is the 'name' prop value
-      productShape: e.target.elements["product-shape"].value,
-      packagingType: e.target.elements["packaging-type"].value,
-      packageWeight: e.target.elements["pacage-weight"].value, // Note: typo 'pacage'
+      product_type: e.target.elements["product-type"].value, // This is the 'name' prop value
+      product_shape: e.target.elements["product-shape"].value,
+      packaging_type: e.target.elements["packaging-type"].value,
+      package_weight: e.target.elements["pacage-weight"].value, // Note: typo 'pacage'
       quantity: e.target.elements["quantity"].value,
-      shipTo: e.target.elements["ship-to"].value,
-      shippingMethod: e.target.elements["shipping-method"].value,
-      additionalMessage: e.target.elements["additional-message"].value,
+      ship_to: e.target.elements["ship-to"].value,
+      shipping_method: e.target.elements["shipping-method"].value,
+      additional_message: e.target.elements["additional-message"].value,
     };
 
     console.log("Collected Form Data:", formData); // اطبع البيانات في الكونسول لتتأكد منها
@@ -32,18 +32,7 @@ const GetCustomQuote = ({ name, openModal, closeModal, message, status }) => {
     openModal();
 
     try {
-      // 3. **هنا هو المكان الذي ستضع فيه رابط الـ API الفعلي**
-
-      // قم بإزالة السطر الخاص بالمحاكاة:
-      // await new Promise(resolve => setTimeout(resolve, 1500));
-
-      // وضع استدعاء الـ fetch API الحقيقي هنا:
-      // ستحتاج إلى استبدال 'YOUR_ACTUAL_API_URL_HERE' بالرابط الفعلي الذي ستحصل عليه.
-      // أمثلة على الروابط:
-      // const apiUrl = 'https://api.yourwebsite.com/contact-form';
-      // const apiUrl = 'http://localhost:3001/messages'; // لو كان API محليًا للتطوير
-
-      const apiUrl = "YOUR_ACTUAL_API_URL_HERE"; // <--- ضع رابط الـ API هنا!
+      const apiUrl = "https://api.ahlamfoods.com/api/full-product"; // <--- ضع رابط الـ API هنا!
 
       const response = await fetch(apiUrl, {
         method: "POST", // غالباً ستستخدم POST لإرسال بيانات نموذج

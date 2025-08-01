@@ -9,7 +9,7 @@ const BestSellerCard = ({
   setCurrentProductId,
 }) => {
   const { t } = useTranslation();
-
+  let price = parseInt(product.price);
   return (
     <div className="d-inline-block product-card-wrapper">
       <div className="product-card">
@@ -35,11 +35,12 @@ const BestSellerCard = ({
               />
             </div>
             <div className="card-txt p-3">
-              <p className="descripe-card">{product.subdescription?.slice(0, 50)}....</p>
+              {/* temporary */}
+              {/* <p className="descripe-card">{product.subdescription?.slice(0, 50)}....</p> */}
               <p className="product-name my-2">{product.name}</p>
               <p className="price mb-0">
-                $ {product.price}
-                <sub style={{ color: "var(--heading-color)" }}>/{t("per ton", "per ton")}</sub>
+                $ {price}
+                <sub style={{ color: "var(--heading-color)" }}> /{t("per ton", "per ton")}</sub>
               </p>
             </div>
           </div>

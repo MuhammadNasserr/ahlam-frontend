@@ -1,6 +1,5 @@
 import connect from "../../../Public/images/connect.webp";
 import { useTranslation } from "../../contexts/TranslationContext";
-
 const ConnectSection = ({ openModal, closeModal }) => {
   const { t } = useTranslation();
 
@@ -13,16 +12,11 @@ const ConnectSection = ({ openModal, closeModal }) => {
       message: e.target.elements["message"].value,
     };
 
-    console.log("Collected Connect Form Data:", formData); // يمكنك ترك هذا السطر للمراجعة
-
     // 2. عرض المودال فوراً
     openModal();
 
     try {
-      // 3. **هنا ستضع رابط الـ API الفعلي الخاص بك**
-      // استبدل 'YOUR_ACTUAL_API_URL_HERE' بالرابط الذي ستحصل عليه.
-      // مثال: 'https://api.yourwebsite.com/contact' أو 'http://localhost:5000/contact'
-      const apiUrl = "YOUR_ACTUAL_API_URL_HERE"; // <--- ضع رابط الـ API الحقيقي هنا!
+      const apiUrl = "https://api.ahlamfoods.com/api/contact"; // <--- ضع رابط الـ API الحقيقي هنا!
 
       const response = await fetch(apiUrl, {
         method: "POST", // غالباً ستكون POST لإرسال بيانات نموذج
@@ -41,8 +35,8 @@ const ConnectSection = ({ openModal, closeModal }) => {
         throw new Error(errorData.message || `حدث خطأ في الشبكة، الكود: ${response.status}`);
       }
 
-      const result = await response.json(); // قراءة الرد من الـ API بعد النجاح
-      console.log("Message sent successfully:", result); // ستعرض الرد الفعلي من الـ API
+      // const result = await response.json(); // قراءة الرد من الـ API بعد النجاح
+      // console.log("Message sent successfully:", result); // ستعرض الرد الفعلي من الـ API
 
       // 4. تنظيف حقول النموذج بعد الإرسال الناجح
       e.target.reset();
