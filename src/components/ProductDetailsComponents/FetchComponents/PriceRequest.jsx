@@ -28,17 +28,13 @@ const ContactSection = ({
     const form = e.target;
 
     const formData = {
-      request: "Price Request",
-      product_id: currentProductId,
-      product_name: currentProductName,
       email: form.elements["email"].value,
+      product: currentProductName,
       message: form.elements["message"].value,
     };
 
-    console.log("Form Data Collected:", formData);
-
     try {
-      const apiUrl = "YOUR_ACTUAL_API_URL_HERE"; // ← ضع رابط الـ API الفعلي هنا
+      const apiUrl = "https://api.ahlamfoods.com/api/product"; // ← ضع رابط الـ API الفعلي هنا
 
       const response = await fetch(apiUrl, {
         method: "POST",
@@ -53,8 +49,8 @@ const ContactSection = ({
         throw new Error(errorData.message || `Error: ${response.status}`);
       }
 
-      const result = await response.json();
-      console.log("Message sent successfully:", result);
+      // const result = await response.json();
+      // console.log("Message sent successfully:", result);
 
       form.reset(); // تفريغ النموذج
     } catch (error) {
