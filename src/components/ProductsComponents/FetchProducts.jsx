@@ -26,8 +26,10 @@ const FetchProducts = () => {
   const initialCategoryCount = 8;
   const [showAllCategories, setShowAllCategories] = useState(false);
   const [selectedCategoryId, setSelectedCategoryId] = useState(null);
-  const [currentPage, setCurrentPage] = useState(1); // New state for current page
-  const productsPerPage = 12; // Number of products per page
+
+  // Re-introduce currentPage and setCurrentPage state
+  // Initialize with 1, and it will be updated by useEffect from URL
+  const [currentPage, setCurrentPage] = useState(1);
 
   // Modal states for product inquiry
   const [isOpen, setIsOpen] = useState(false);
@@ -40,10 +42,14 @@ const FetchProducts = () => {
   const submittedForm = () => setSubmitted(true);
   const unSubmittedForm = () => setSubmitted(false);
 
-  // Effect for scrolling to product section when categoryName changes in URL
+  // Effect for scrolling to product section and updating currentPage from URL
   useEffect(() => {
     const queryParams = new URLSearchParams(location.search);
     const categoryNameInUrl = queryParams.get("categoryName");
+    const pageInUrl = queryParams.get("page"); // Get page from URL
+
+    // Update currentPage from URL or default to 1
+    setCurrentPage(parseInt(pageInUrl) || 1);
 
     if (categoryNameInUrl && containerRef.current) {
       const elementRect = containerRef.current.getBoundingClientRect();
@@ -55,9 +61,7 @@ const FetchProducts = () => {
         behavior: "smooth",
       });
     }
-    // Reset to first page when category changes
-    setCurrentPage(1);
-  }, [location.search]);
+  }, [location.search]); // Depend on location.search to re-run when URL changes
 
   // Fetch categories using react-query
   const {
@@ -102,33 +106,42 @@ const FetchProducts = () => {
 
   // Fetch products using react-query
   const {
-    data: products = [],
+    data: productData = { data: [], last_page: 1 }, // Initialize with structure to avoid errors
     isLoading: productsLoading,
     isError: productsError,
     refetch: refetchProducts,
   } = useQuery({
-    queryKey: ["products", selectedCategoryId, locale],
-    queryFn: () =>
-      selectedCategoryId === null
-        ? fetchData("/products")
-        : fetchData(`/categories/${selectedCategoryId}/products`),
+    queryKey: ["products", selectedCategoryId, locale, currentPage], // Add currentPage to queryKey
+    queryFn: () => {
+      let url = "";
+      if (selectedCategoryId === null) {
+        url = `/products?page=${currentPage}`; // Pass page for all products
+      } else {
+        url = `/categories/${selectedCategoryId}/products?page=${currentPage}`; // Pass page for category products
+      }
+      return fetchData(url);
+    },
     enabled: true,
     retry: 1,
     staleTime: 0,
+    keepPreviousData: true, // Keep previous data while fetching new page
   });
 
-  // Calculate total pages
-  const totalPages = Math.ceil(products.length / productsPerPage);
+  const products = productData.data || [];
+  const totalPages = productData.last_page || 1;
 
-  // Get current products for the page
-  const indexOfLastProduct = currentPage * productsPerPage;
-  const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
-  const currentProducts = products.slice(indexOfFirstProduct, indexOfLastProduct);
-
-  // Handle page change
+  // Handle page change - now updates URL and then currentPage state via useEffect
   const handlePageChange = (pageNumber) => {
-    setCurrentPage(pageNumber);
-    window.scrollTo({ top: containerRef.current.offsetTop - 80, behavior: "smooth" }); // Scroll to top of products on page change
+    const params = new URLSearchParams(location.search);
+    params.set("page", pageNumber);
+    navigate(`${location.pathname}?${params.toString()}`);
+    // The setCurrentPage will be handled by the useEffect watching location.search
+    if (containerRef.current) {
+      window.scrollTo({
+        top: containerRef.current.offsetTop - 80,
+        behavior: "smooth",
+      });
+    }
   };
 
   // Determine if there's any error
@@ -146,11 +159,13 @@ const FetchProducts = () => {
     : null;
 
   const handleCategorySelect = (categoryName) => {
-    navigate(`/products?categoryName=${encodeURIComponent(categoryName)}`);
+    // Reset page to 1 when category changes
+    navigate(`/products?categoryName=${encodeURIComponent(categoryName)}&page=1`);
   };
 
   const handleAllProductsSelect = () => {
-    navigate("/products?categoryName=isAllProducts");
+    // Reset page to 1 when selecting all products
+    navigate("/products?categoryName=isAllProducts&page=1");
   };
 
   const handleQuickInquire = (productId, productName) => {
@@ -206,14 +221,14 @@ const FetchProducts = () => {
             />
 
             <ProductGrid
-              products={currentProducts} // Pass only products for the current page
+              products={products}
               productsLoading={productsLoading}
               baseImageUrl={baseImageUrl}
               onQuickInquire={handleQuickInquire}
-              currentPage={currentPage} // Pass current page
-              totalPages={totalPages} // Pass total pages
-              onPageChange={handlePageChange} // Pass page change handler
-              productsCount={products.length} // Pass total count for "no products" message
+              currentPage={currentPage}
+              totalPages={totalPages}
+              onPageChange={handlePageChange}
+              productsCount={products.length} // Still useful for "no products" message
             />
           </div>
         )}

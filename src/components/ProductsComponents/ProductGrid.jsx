@@ -7,9 +7,11 @@ const ProductGrid = ({
   baseImageUrl,
   onQuickInquire,
   currentPage,
-  totalPages,
+  totalPages, // This will now come directly from the API response (e.g., productData.last_page)
   onPageChange,
-  productsCount,
+  productsCount, // This will be the count of products on the *current* page for display,
+  // or the overall count if the API sends it separately.
+  // For "No products available", it's better to use products.length
 }) => {
   const { t } = useTranslation();
 
@@ -91,7 +93,7 @@ const ProductGrid = ({
               <ProductSkeletonCard key={i} />
             ))}
         </div>
-      ) : productsCount === 0 ? (
+      ) : products.length === 0 ? ( // Check products.length for "no products" message
         <p
           className="fw-bold"
           style={{
@@ -160,7 +162,7 @@ const ProductGrid = ({
           </div>
 
           {/* Pagination Controls */}
-          {totalPages > 1 && (
+          {totalPages > 1 && ( // Only show pagination if there's more than 1 page
             <nav
               aria-label="Product page navigation"
               className="mt-4"
@@ -179,7 +181,7 @@ const ProductGrid = ({
 
                 {displayedPageNumbers.map((pageNumber, index) => (
                   <li
-                    key={pageNumber === "..." ? `ellipsis-${index}` : pageNumber} // Improved key for ellipses
+                    key={pageNumber === "..." ? `ellipsis-${index}` : pageNumber}
                     className={`page-item ${pageNumber === "..." ? "disabled" : ""} ${
                       currentPage === pageNumber ? "active" : ""
                     }`}
@@ -187,7 +189,7 @@ const ProductGrid = ({
                     <button
                       className="page-link"
                       onClick={() => pageNumber !== "..." && onPageChange(pageNumber)}
-                      disabled={pageNumber === "..."} // تعطيل زر الـ ellipsis
+                      disabled={pageNumber === "..."}
                     >
                       {pageNumber}
                     </button>

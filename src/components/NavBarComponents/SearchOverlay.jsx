@@ -7,24 +7,53 @@ import { useTranslation } from "../../contexts/TranslationContext";
 
 const baseImageUrl = "https://api.ahlamfoods.com/storage/";
 
+function useDebounce(value, delay) {
+  const [debouncedValue, setDebouncedValue] = useState(value);
+
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      setDebouncedValue(value);
+    }, delay);
+
+    return () => {
+      clearTimeout(handler);
+    };
+  }, [value, delay]);
+
+  return debouncedValue;
+}
+
 export const SearchOverlay = ({ t }) => {
   const { locale } = useTranslation();
 
-  const fetProductData = () => {
-    const res = fetchData("/products");
-    return res;
-  };
-
-  const { data: productsData } = useQuery({
-    queryKey: ["allProducts", locale],
-    queryFn: fetProductData,
-  });
-
   const [showSearchOverlay, setShowSearchOverlay] = useState(false);
   const [searchInput, setSearchInput] = useState("");
+  const debouncedSearchInput = useDebounce(searchInput, 500);
+
   const [searchResults, setSearchResults] = useState([]);
+
   const searchInputRef = useRef(null);
   const searchOverlayRef = useRef(null);
+
+  const {
+    data: searchResultsData,
+    isLoading: searchLoading,
+    isError: searchError,
+  } = useQuery({
+    queryKey: ["searchResults", debouncedSearchInput, locale],
+    queryFn: () => fetchData(`/products/search?query=${debouncedSearchInput}`),
+    enabled: !!debouncedSearchInput && debouncedSearchInput.trim() !== "" && showSearchOverlay,
+    staleTime: 5 * 60 * 1000,
+    keepPreviousData: true,
+  });
+
+  useEffect(() => {
+    if (searchResultsData && Array.isArray(searchResultsData.data)) {
+      setSearchResults(searchResultsData.data);
+    } else {
+      setSearchResults([]);
+    }
+  }, [searchResultsData]);
 
   const highlightText = (text, searchTerm) => {
     if (!searchTerm) return text;
@@ -32,25 +61,8 @@ export const SearchOverlay = ({ t }) => {
     return text.replace(regex, '<span class="highlight">$1</span>');
   };
 
-  const performSearch = (query) => {
-    if (!query.trim()) {
-      setSearchResults([]);
-      return;
-    }
-    const searchTerm = query.trim().toLowerCase();
-    const filteredResults = productsData?.filter(
-      (product) =>
-        product.name.toLowerCase().includes(searchTerm) ||
-        product.subdescription.toLowerCase().includes(searchTerm) ||
-        product.category.toLowerCase().includes(searchTerm)
-    );
-    setSearchResults(filteredResults);
-  };
-
   const openSearchOverlay = () => {
     setShowSearchOverlay(true);
-    // Push a new state to history when overlay opens
-    // This allows the back button to close the overlay without changing the URL
     window.history.pushState({ searchOverlayOpen: true }, "");
     setTimeout(() => {
       searchInputRef.current?.focus();
@@ -61,70 +73,58 @@ export const SearchOverlay = ({ t }) => {
     setShowSearchOverlay(false);
     setSearchInput("");
     setSearchResults([]);
+
+    if (window.history.state && window.history.state.searchOverlayOpen) {
+      window.history.back();
+    }
   };
 
   const handleSearchInputChange = (e) => {
     setSearchInput(e.target.value);
-    performSearch(e.target.value);
   };
 
   const handleSearchFormSubmit = (e) => {
     e.preventDefault();
-    performSearch(searchInput);
   };
 
-  // Effect to handle body scroll, keyboard/click events, and browser history
   useEffect(() => {
-    // Disable/enable body scroll
     if (showSearchOverlay) {
       document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = ""; // Reset to default
+      document.body.style.overflow = "";
     }
 
     const handleKeyDown = (e) => {
       if (e.key === "Escape" && showSearchOverlay) {
-        // If the overlay is open and the escape key is pressed,
-        // we need to also pop the history state to avoid a lingering state
-        if (window.history.state && window.history.state.searchOverlayOpen) {
-          window.history.back(); // Go back in history to remove the overlay state
-        } else {
-          closeSearchOverlay();
-        }
+        closeSearchOverlay();
       }
     };
     document.addEventListener("keydown", handleKeyDown);
 
     const handleClickOutside = (e) => {
+      // تعديل هنا: إذا كان الهدف الذي تم النقر عليه هو الـ overlay نفسه
       if (searchOverlayRef.current && e.target === searchOverlayRef.current) {
-        // If clicking outside and the overlay is open,
-        // also pop the history state
-        if (window.history.state && window.history.state.searchOverlayOpen) {
-          window.history.back(); // Go back in history to remove the overlay state
-        } else {
-          closeSearchOverlay();
-        }
+        closeSearchOverlay();
       }
     };
-    document.addEventListener("click", handleClickOutside);
+    document.addEventListener("mousedown", handleClickOutside);
 
-    // Handle browser back button (popstate event)
     const handlePopState = (event) => {
-      // Check if the state that was popped indicates the overlay should be open
       if (showSearchOverlay && (!event.state || !event.state.searchOverlayOpen)) {
-        closeSearchOverlay();
+        setShowSearchOverlay(false);
+      } else if (!showSearchOverlay && event.state && event.state.searchOverlayOpen) {
+        setShowSearchOverlay(true);
       }
     };
     window.addEventListener("popstate", handlePopState);
 
     return () => {
       document.removeEventListener("keydown", handleKeyDown);
-      document.removeEventListener("click", handleClickOutside);
+      document.removeEventListener("mousedown", handleClickOutside);
       window.removeEventListener("popstate", handlePopState);
-      // Ensure scroll is re-enabled if component unmounts or overlay is closed
       document.body.style.overflow = "";
     };
-  }, [showSearchOverlay]); // Dependency on showSearchOverlay
+  }, [showSearchOverlay]);
 
   return (
     <>
@@ -157,7 +157,11 @@ export const SearchOverlay = ({ t }) => {
             </button>
           </form>
           <div id="searchResults" className="search-results">
-            {searchResults.length === 0 && searchInput.trim() !== "" ? (
+            {searchLoading && searchInput.trim() !== "" ? (
+              <p>{t("loading_search_results", "Loading search results...")}</p>
+            ) : searchError ? (
+              <p>{t("error_loading_products_for_search", "Error loading products for search.")}</p>
+            ) : searchResults.length === 0 && searchInput.trim() !== "" ? (
               <div className="no-results">
                 <p>
                   {t("no_results_for", "No results found for")}
