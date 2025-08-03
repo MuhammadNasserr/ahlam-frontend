@@ -8,10 +8,6 @@ import { useQuery } from "@tanstack/react-query"; // Import useQuery
 const OurProductsSection = () => {
   const { t, locale } = useTranslation();
 
-  // Remove `loading` and `error` state variables, react-query will manage them
-  // const [loading, setLoading] = useState(true);
-  // const [error, setError] = useState(null);
-
   const BASE_Image_URL = "https://api.ahlamfoods.com"; // Still needed for image paths
 
   // ✨ Use useQuery for fetching categories
@@ -59,9 +55,6 @@ const OurProductsSection = () => {
     </div>
   );
 
-  // No longer need renderCategoryCardsContent, we'll inline it in JSX
-  // as the logic is now handled by isLoading, isError, and data.length
-
   return (
     <section className="our-product position-relative text-center text-md-start py-5">
       <div className="container">
@@ -69,10 +62,11 @@ const OurProductsSection = () => {
           className="product-heading d-flex justify-content-center justify-content-md-between"
           data-aos="zoom-out"
         >
-          <Link to="/products">
+          <Link to="/products?isAllProducts=true">
+            {" "}
+            {/* Updated link to show all products */}
             <h1 className="home-heading mb-3">{t("our_products_heading", "Our Products")}</h1>
           </Link>
-          {/* ✨ Error message and Refresh button, similar to BestSellerSection */}
           {isError && (
             <div
               className="alert alert-danger mt-3 d-flex align-items-center justify-content-center"
@@ -125,7 +119,7 @@ const OurProductsSection = () => {
                 data-aos="flip-left"
               >
                 <Link
-                  to={`/products?categoryName=${cat.name}`}
+                  to={`/products?categoryId=${cat.id}&page=1`}
                   className="card d-block"
                   style={{ backgroundColor: "var(--white-color)" }}
                 >
@@ -150,7 +144,7 @@ const OurProductsSection = () => {
         <Link
           className="home-btn other-btn d-flex my-4 justify-content-center align-items-center"
           style={{ backgroundColor: "transparent" }}
-          to="/products"
+          to="/products?isAllProducts=true&page=1"
         >
           {t("others_button", "Others")}
           <FontAwesomeIcon icon={faArrowRight} className="ms-2 shake" />
@@ -159,4 +153,5 @@ const OurProductsSection = () => {
     </section>
   );
 };
+
 export default OurProductsSection;

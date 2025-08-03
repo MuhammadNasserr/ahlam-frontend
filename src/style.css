@@ -72,17 +72,20 @@ body {
   text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
 }
+
 /*----------*/
 .page-link {
   color: black !important;
 }
-.active>.page-link, .page-link.active {
+
+.active>.page-link,
+.page-link.active {
   color: #fff !important;
   background-color: var(--green-color);
-border-color: var(--green-color);
+  border-color: var(--green-color);
 }
-/*-------------------------  Nav  ------------------------ */
 
+/*-------------------------  Nav  ------------------------ */
 nav {
   background-color: #fff;
 }
@@ -189,11 +192,12 @@ nav .navbar-nav li {
   transform: translateY(10px);
   pointer-events: none;
 }
-.dropdown-menu li{
+
+.dropdown-menu li {
   margin: 0;
 }
 
-.dropdownn:hover > .dropdown-menu {
+.dropdownn:hover>.dropdown-menu {
   display: block;
   opacity: 1;
   transform: translateY(0);
@@ -208,7 +212,7 @@ nav .navbar-nav li {
   margin-top: -1px;
 }
 
-.dropend:hover > .dropdown-menu {
+.dropend:hover>.dropdown-menu {
   display: block;
   opacity: 1;
   transform: translateY(0);
@@ -222,10 +226,10 @@ nav .navbar-nav li {
 }
 
 .dropdown-menu.show {
-    display: block;
-    opacity: 1;
-    transform: translateY(0);
-    pointer-events: auto;
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
 }
 
 /*-------*/
@@ -618,6 +622,7 @@ pre {
     /* قرب الزر أكثر من الحافة */
   }
 }
+
 /*------------ FAQS-Page  -------- */
 footer {
   background-color: var(--white-color) !important;

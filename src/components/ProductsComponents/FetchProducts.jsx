@@ -1,4 +1,3 @@
-// src/components/ProductPage/ProductPage.jsx
 import React, { useState, useEffect, useRef } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -45,13 +44,14 @@ const FetchProducts = () => {
   // Effect for scrolling to product section and updating currentPage from URL
   useEffect(() => {
     const queryParams = new URLSearchParams(location.search);
-    const categoryNameInUrl = queryParams.get("categoryName");
+    const categoryIdInUrl = queryParams.get("categoryId"); // Look for categoryId
     const pageInUrl = queryParams.get("page"); // Get page from URL
 
     // Update currentPage from URL or default to 1
     setCurrentPage(parseInt(pageInUrl) || 1);
 
-    if (categoryNameInUrl && containerRef.current) {
+    // Scroll to section if a category is selected or all products are viewed
+    if ((categoryIdInUrl || queryParams.get("isAllProducts")) && containerRef.current) {
       const elementRect = containerRef.current.getBoundingClientRect();
       const offsetTop = elementRect.top + window.scrollY;
       const scrollPosition = offsetTop - 80;
@@ -79,11 +79,12 @@ const FetchProducts = () => {
   // Effect to update selectedCategoryId and handle "Others" expansion
   useEffect(() => {
     const params = new URLSearchParams(location.search);
-    const nameFromUrl = params.get("categoryName");
+    const idFromUrl = params.get("categoryId"); // Get categoryId from URL
+    const isAllProducts = params.get("isAllProducts");
 
-    if (nameFromUrl !== null && categories.length > 0) {
+    if (idFromUrl !== null && categories.length > 0) {
       const foundCategory = categories.find(
-        (cat) => decodeURIComponent(cat.name).toLowerCase() === nameFromUrl.toLowerCase()
+        (cat) => String(cat.id) === idFromUrl // Compare ID as string to URL param
       );
 
       if (foundCategory) {
@@ -98,7 +99,8 @@ const FetchProducts = () => {
         setSelectedCategoryId(null);
         setShowAllCategories(false);
       }
-    } else if (nameFromUrl === "isAllProducts" || nameFromUrl === null) {
+    } else if (isAllProducts === "true" || idFromUrl === null) {
+      // If "isAllProducts" is true or no categoryId is present
       setSelectedCategoryId(null);
       setShowAllCategories(false);
     }
@@ -158,14 +160,14 @@ const FetchProducts = () => {
     ? categories.find((cat) => cat.id === selectedCategoryId)
     : null;
 
-  const handleCategorySelect = (categoryName) => {
+  const handleCategorySelect = (categoryId) => {
     // Reset page to 1 when category changes
-    navigate(`/products?categoryName=${encodeURIComponent(categoryName)}&page=1`);
+    navigate(`/products?categoryId=${categoryId}&page=1`);
   };
 
   const handleAllProductsSelect = () => {
-    // Reset page to 1 when selecting all products
-    navigate("/products?categoryName=isAllProducts&page=1");
+    // Reset page to 1 when selecting all products and add isAllProducts=true
+    navigate("/products?isAllProducts=true&page=1");
   };
 
   const handleQuickInquire = (productId, productName) => {

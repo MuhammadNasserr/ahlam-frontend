@@ -85,7 +85,7 @@ export const ProductDetailsPage = ({ id }) => {
         {/* Images And Info */}
         <div className="row ">
           {/* Images Side (includes buttons now) */}
-          <div className="col-12 col-lg-7 mb-5">
+          <div className="col-12 col-lg-7 mb-2">
             <ProductImageGallery
               allImages={allImages}
               details={details}

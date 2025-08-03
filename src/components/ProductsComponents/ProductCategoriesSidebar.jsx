@@ -1,4 +1,3 @@
-// src/components/ProductPage/ProductCategoriesSidebar.jsx
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronUp, faChevronRight } from "@fortawesome/free-solid-svg-icons";
@@ -101,7 +100,7 @@ const ProductCategoriesSidebar = ({
                   selectedCategoryId === cat.id ? "var(--green-color)" : "var(--heading-color)",
                 fontWeight: selectedCategoryId === cat.id ? "700" : "",
               }}
-              onClick={() => onCategorySelect(cat.name)}
+              onClick={() => onCategorySelect(cat.id)}
             >
               {cat.name}
             </li>

@@ -7,7 +7,7 @@ export const ProductTags = ({
   currentDescription,
 }) => {
   return (
-    <div className="py-5">
+    <div className="pb-5">
       <div>
         <ul
           className="d-flex gap-3 pb-2 mb-2"
@@ -23,7 +23,10 @@ export const ProductTags = ({
               onClick={() => changeCurrentDescriptionAndActive(tag.name, tag.description)}
               className="position-relative pointer"
               style={{
-                color: active === tag.name ? "var(--green-color)" : "var(--heading-color)",
+                color: active === tag.name ? "#fff" : "var(--heading-color)",
+                padding: active === tag.name ? "5px" : "0",
+                borderRadius: active === tag.name ? "5px" : "0",
+                backgroundColor: active === tag.name ? "var(--green-color)" : "transparent",
                 fontWeight: active === tag.name ? "700" : "400",
                 whiteSpace: "nowrap",
               }}

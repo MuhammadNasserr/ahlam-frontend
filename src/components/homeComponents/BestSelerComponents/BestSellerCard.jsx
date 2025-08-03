@@ -38,10 +38,11 @@ const BestSellerCard = ({
               {/* temporary */}
               {/* <p className="descripe-card">{product.subdescription?.slice(0, 50)}....</p> */}
               <p className="product-name my-2">{product.name}</p>
-              <p className="price mb-0">
+              {/* temporary */}
+              {/* <p className="price mb-0">
                 $ {price}
                 <sub style={{ color: "var(--heading-color)" }}> /{t("per ton", "per ton")}</sub>
-              </p>
+              </p> */}
             </div>
           </div>
         </Link>

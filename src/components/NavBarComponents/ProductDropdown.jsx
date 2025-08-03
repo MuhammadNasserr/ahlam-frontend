@@ -5,7 +5,7 @@ import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
 
 export const ProductDropdown = ({ t, isMainProductsActive }) => {
   // The useEffect for closing dropdowns on outside clicks is still necessary
-  // as pure CSS hover doesn't manage global clicks.
+  // as pure CSS hover doesn't manage global global clicks.
   useEffect(() => {
     const handleDocumentClick = (event) => {
       const dropdownContainer = document.getElementById("productsDropdownContainer");
@@ -34,7 +34,7 @@ export const ProductDropdown = ({ t, isMainProductsActive }) => {
             isActive || isMainProductsActive() ? "active" : ""
           }`
         }
-        to="/products" // Clicking "Products" navigates to /products
+        to="/products?isAllProducts=true" // Clicking "Products" now navigates to show all products
         id="productsDropdown"
         role="button"
         end
@@ -50,30 +50,30 @@ export const ProductDropdown = ({ t, isMainProductsActive }) => {
       <ul
         className="dropdown-menu" // CSS will add/remove 'show'
         aria-labelledby="productsDropdown"
-        style={{ backgroundColor: "var(--bg-color)", width: "150px" }}
+        style={{ backgroundColor: "var(--bg-color)", width: "200px" }}
       >
         {/* Frozen dropdown */}
         <li className="dropend">
           <Link
             className="dropdown-item d-flex align-items-center justify-content-between"
-            to="/products?categoryName=Frozen" // Clicking "Frozen" navigates
+            to="/products?categoryId=2&page=1"
           >
             {t("frozen", "Frozen")}
             <FontAwesomeIcon icon={faAngleDown} rotation={270} />
           </Link>
           <ul
-            className="dropdown-menu dropdown-submenu" // CSS will handle 'show'
+            className="dropdown-menu dropdown-submenu"
             style={{
               backgroundColor: "var(--bg-color)",
             }}
           >
             <li>
-              <Link className="dropdown-item" to="/products?categoryName=Frozen Fruits">
+              <Link className="dropdown-item" to="/products?categoryId=2&page=1">
                 {t("fruits", "Fruits")}
               </Link>
             </li>
             <li>
-              <Link className="dropdown-item" to="/products?categoryName=Frozen Vegetables">
+              <Link className="dropdown-item" to="/products?categoryId=3&page=1">
                 {t("vegetables", "Vegetables")}
               </Link>
             </li>
@@ -84,24 +84,24 @@ export const ProductDropdown = ({ t, isMainProductsActive }) => {
         <li className="dropend">
           <Link
             className="dropdown-item d-flex align-items-center justify-content-between"
-            to="/products?categoryName=Fresh" // Clicking "Fresh" navigates
+            to="/products?categoryId=4&page=1"
           >
             {t("fresh", "Fresh")}
             <FontAwesomeIcon icon={faAngleDown} rotation={270} />
           </Link>
           <ul
-            className="dropdown-menu dropdown-submenu" // CSS will handle 'show'
+            className="dropdown-menu dropdown-submenu"
             style={{
               backgroundColor: "var(--bg-color)",
             }}
           >
             <li>
-              <Link className="dropdown-item" to="/products?categoryName=Fresh Fruits">
+              <Link className="dropdown-item" to="/products?categoryId=4&page=1">
                 {t("fruits", "Fruits")}
               </Link>
             </li>
             <li>
-              <Link className="dropdown-item" to="/products?categoryName=Fresh Vegetables">
+              <Link className="dropdown-item" to="/products?categoryId=5&page=1">
                 {t("vegetables", "Vegetables")}
               </Link>
             </li>
@@ -110,22 +110,22 @@ export const ProductDropdown = ({ t, isMainProductsActive }) => {
 
         {/* Other categories */}
         <li>
-          <Link className="dropdown-item" to="/products?categoryName=Herbs">
+          <Link className="dropdown-item" to="/products?categoryId=6&page=1">
             {t("spices_herbs", "Herbs")}
           </Link>
         </li>
         <li>
-          <Link className="dropdown-item" to="/products?categoryName=Pickles">
+          <Link className="dropdown-item" to="/products?categoryId=7&page=1">
             {t("pickles", "Pickles")}
           </Link>
         </li>
         <li>
-          <Link className="dropdown-item" to="/products?categoryName=Dates">
+          <Link className="dropdown-item" to="/products?categoryId=8&page=1">
             {t("dates", "Dates")}
           </Link>
         </li>
         <li>
-          <Link className="dropdown-item" to="/products?categoryName=isAllProducts">
+          <Link className="dropdown-item" to="/products?isAllProducts=true&page=1">
             {t("others_category", "Others")}
           </Link>
         </li>

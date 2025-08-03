@@ -123,8 +123,8 @@ const SupplierForm = ({ openModal, closeModal }) => {
                   </option>
                   <option value="fruits">{t("fruits_option", "Fruits")}</option>
                   <option value="vegetables">{t("vegetables_option", "Vegetables")}</option>
-                  <option value="citrus">{t("citrus_option", "Citrus")}</option>
-                  <option value="spices&herbs">{t("spices_herbs_option", "Spices & Herbs")}</option>
+                  <option value="citrus">{t("dates", "Dates")}</option>
+                  <option value="spices&herbs">{t("spices_herbs", "Herbs")}</option>
                   <option value="pickles">{t("pickles_option", "Pickles")}</option>
                   <option value="others">{t("others_option", "Others")}</option>
                 </select>

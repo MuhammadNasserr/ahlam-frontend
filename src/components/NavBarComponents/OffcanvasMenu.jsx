@@ -1,17 +1,12 @@
 import React, { useEffect } from "react";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink, Link, useLocation } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
-import SideHeaderLink from "../SideHeaderLink"; // هذا المكون موجود بالفعل لديك
+import SideHeaderLink from "../SideHeaderLink";
 
-export const OffcanvasMenu = ({
-  isDark,
-  logo,
-  logodark,
-  t,
-  isMainProductsActive, // لا تزال بحاجة إلى هذه الوظيفة
-  isSideLinkActive, // لا تزال بحاجة إلى هذه الوظيفة
-}) => {
+export const OffcanvasMenu = ({ isDark, logo, logodark, t, isMainProductsActive }) => {
+  const location = useLocation();
+
   useEffect(() => {
     const offcanvasElement = document.getElementById("offcanvasMenu");
 
@@ -34,21 +29,16 @@ export const OffcanvasMenu = ({
     offcanvasElement.querySelectorAll("a.nav-link").forEach((link) => {
       cleanupFunctions.push(handleNavLinkClick(link));
     });
-
-    // ✅ 1. لما يتفتح المينيو نحط حالة وهمية في الـ history
     const handleShown = () => {
-      window.history.pushState({ offcanvasOpen: true }, ""); // push fake state
+      window.history.pushState({ offcanvasOpen: true }, "");
     };
 
-    // ✅ 2. لما يتقفل نحذف الـ state الوهمية
     const handleHidden = () => {
-      // لما يتقفل المينيو نرجع خطوة واحدة في الـ history
       if (window.history.state?.offcanvasOpen) {
         window.history.back();
       }
     };
 
-    // ✅ 3. زر الرجوع
     const handlePopState = () => {
       if (offcanvasElement.classList.contains("show")) {
         bsOffcanvas.hide();
@@ -66,6 +56,18 @@ export const OffcanvasMenu = ({
       window.removeEventListener("popstate", handlePopState);
     };
   }, [t]);
+
+  // Helper function to check if a category ID is active
+  const isCategoryActive = (categoryId) => {
+    const params = new URLSearchParams(location.search);
+    return params.get("categoryId") === String(categoryId);
+  };
+
+  // Helper function to check if "isAllProducts=true" is active
+  const isAllProductsActive = () => {
+    const params = new URLSearchParams(location.search);
+    return params.get("isAllProducts") === "true";
+  };
 
   return (
     <div
@@ -102,7 +104,7 @@ export const OffcanvasMenu = ({
           </li>
           <li className="dropdown nav-item">
             <NavLink
-              to="/products"
+              to="/products?isAllProducts=true&page=1"
               className={({ isActive }) =>
                 `nav-link dropdown-toggle d-flex gap-5 ${
                   isActive || isMainProductsActive() ? "side-active" : ""
@@ -117,13 +119,9 @@ export const OffcanvasMenu = ({
             <ul className="collapse list-unstyled ps-5" id="dropdown1">
               <li className="dropdown">
                 <Link
-                  to="/products?categoryName=Frozen"
+                  to="/products?categoryId=2&page=1"
                   className={`dropdown-toggle d-flex gap-5 nav-link ${
-                    isSideLinkActive("Frozen") ||
-                    isSideLinkActive("Frozen Fruits") ||
-                    isSideLinkActive("Frozen Vegetables")
-                      ? "side-active"
-                      : ""
+                    isCategoryActive(2) || isCategoryActive(3) ? "side-active" : ""
                   }`}
                   data-bs-toggle="collapse"
                   data-bs-target="#dropdown1-1"
@@ -134,20 +132,16 @@ export const OffcanvasMenu = ({
                 <ul className="collapse list-unstyled ps-4" id="dropdown1-1">
                   <li>
                     <Link
-                      className={`nav-link ${
-                        isSideLinkActive("Frozen Fruits") ? "side-active" : ""
-                      }`}
-                      to="/products?categoryName=Frozen Fruits"
+                      className={`nav-link ${isCategoryActive(2) ? "side-active" : ""}`}
+                      to="/products?categoryId=2&page=1"
                     >
                       {t("fruits", "Fruits")}
                     </Link>
                   </li>
                   <li>
                     <Link
-                      className={`nav-link ${
-                        isSideLinkActive("Frozen Vegetables") ? "side-active" : ""
-                      }`}
-                      to="/products?categoryName=Frozen Vegetables"
+                      className={`nav-link ${isCategoryActive(3) ? "side-active" : ""}`}
+                      to="/products?categoryId=3&page=1"
                     >
                       {t("vegetables", "Vegetables")}
                     </Link>
@@ -157,13 +151,9 @@ export const OffcanvasMenu = ({
 
               <li className="dropdown">
                 <Link
-                  to="/products?categoryName=Fresh"
+                  to="/products?categoryId=4&page=1"
                   className={`dropdown-toggle d-flex gap-5 nav-link ${
-                    isSideLinkActive("Fresh") ||
-                    isSideLinkActive("Fresh Fruits") ||
-                    isSideLinkActive("Fresh Vegetables")
-                      ? "side-active"
-                      : ""
+                    isCategoryActive(4) || isCategoryActive(5) ? "side-active" : ""
                   }`}
                   data-bs-toggle="collapse"
                   data-bs-target="#dropdown1-2"
@@ -174,20 +164,16 @@ export const OffcanvasMenu = ({
                 <ul className="collapse list-unstyled ps-4" id="dropdown1-2">
                   <li>
                     <Link
-                      className={`nav-link ${
-                        isSideLinkActive("Fresh Fruits") ? "side-active" : ""
-                      }`}
-                      to="/products?categoryName=Fresh Fruits"
+                      className={`nav-link ${isCategoryActive(4) ? "side-active" : ""}`}
+                      to="/products?categoryId=4&page=1"
                     >
                       {t("fruits", "Fruits")}
                     </Link>
                   </li>
                   <li>
                     <Link
-                      className={`nav-link ${
-                        isSideLinkActive("Fresh Vegetables") ? "side-active" : ""
-                      }`}
-                      to="/products?categoryName=Fresh Vegetables"
+                      className={`nav-link ${isCategoryActive(5) ? "side-active" : ""}`}
+                      to="/products?categoryId=5&page=1"
                     >
                       {t("vegetables", "Vegetables")}
                     </Link>
@@ -198,32 +184,32 @@ export const OffcanvasMenu = ({
               {/* Others categories */}
               <li>
                 <Link
-                  className={`nav-link ${isSideLinkActive("Herbs") ? "side-active" : ""}`}
-                  to="/products?categoryName=Herbs"
+                  className={`nav-link ${isCategoryActive(6) ? "side-active" : ""}`}
+                  to="/products?categoryId=6&page=1"
                 >
                   {t("spices_herbs", "Herbs")}
                 </Link>
               </li>
               <li>
                 <Link
-                  className={`nav-link ${isSideLinkActive("Pickles") ? "side-active" : ""}`}
-                  to="/products?categoryName=Pickles"
+                  className={`nav-link ${isCategoryActive(7) ? "side-active" : ""}`}
+                  to="/products?categoryId=7&page=1"
                 >
                   {t("pickles", "Pickles")}
                 </Link>
               </li>
               <li>
                 <Link
-                  className={`nav-link ${isSideLinkActive("Dates") ? "side-active" : ""}`}
-                  to="/products?categoryName=Dates"
+                  className={`nav-link ${isCategoryActive(8) ? "side-active" : ""}`}
+                  to="/products?categoryId=8&page=1"
                 >
                   {t("dates", "Dates")}
                 </Link>
               </li>
               <li>
                 <Link
-                  className={`nav-link ${isSideLinkActive("isAllProducts") ? "side-active" : ""}`}
-                  to="/products?categoryName=isAllProducts"
+                  className={`nav-link ${isAllProductsActive() ? "side-active" : ""}`}
+                  to="/products?isAllProducts=true&page=1"
                 >
                   {t("others_category", "Others")}
                 </Link>
