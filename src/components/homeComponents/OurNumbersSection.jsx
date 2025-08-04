@@ -58,7 +58,7 @@ export const OurNumbersSection = () => {
 
   return (
     <section
-      className="our-number mt-5 text-center text-md-start  position-relative"
+      className="our-number mt-4 mt-md-5 text-center text-md-start  position-relative"
       ref={sectionRef}
     >
       <div className="container">

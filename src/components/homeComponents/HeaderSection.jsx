@@ -7,6 +7,7 @@ import img11440 from "../../../Public/images/img1-1440.webp";
 import img11920 from "../../../Public/images/img1-1920.webp";
 import img2 from "../../../Public/images/img2.webp";
 import img3 from "../../../Public/images/img3.webp";
+import img4 from "../../../Public/images/img4.webp";
 import threedots from "../../../Public/images/threedots.webp";
 import { useTranslation } from "../../contexts/TranslationContext";
 import Carousel from "react-bootstrap/Carousel";
@@ -18,24 +19,24 @@ export const HeaderSection = () => {
 
   return (
     <header>
-      <Carousel interval={3000} fade wrap={true} id="heroCarousel" className="hero-section">
+      <Carousel
+        interval={3000}
+        controls={true}
+        indicators={true}
+        id="heroCarousel"
+        className="hero-section"
+      >
         <Carousel.Item>
           <img
-            src={img11920} // الصورة الافتراضية/الأكبر
-            srcSet={`${img1320} 320w,
-                      ${img1480} 480w,
-                      ${img1768} 768w,
-                      ${img11024} 1024w,
-                      ${img11440} 1440w,
-                      ${img11920} 1920w`}
-            sizes="100vw" // لأن الصورة ستأخذ عرض الشاشة بالكامل
+            src={img11920}
+            srcSet={`${img1320} 320w, ${img1480} 480w, ${img1768} 768w, ${img11024} 1024w, ${img11440} 1440w, ${img11920} 1920w`}
+            sizes="100vw"
             alt="Egypt's Finest Produce - Slide 1"
             className="d-block w-100 carousel-img"
-            fetchPriority="high" // مهم لـ LCP
-            loading="eager" // مهم لـ LCP
+            fetchPriority="high"
+            loading="eager"
           />
         </Carousel.Item>
-
         <Carousel.Item>
           <img
             src={img2}
@@ -44,7 +45,6 @@ export const HeaderSection = () => {
             loading="lazy"
           />
         </Carousel.Item>
-
         <Carousel.Item>
           <img
             src={img3}
@@ -53,8 +53,15 @@ export const HeaderSection = () => {
             loading="lazy"
           />
         </Carousel.Item>
+        <Carousel.Item>
+          <img
+            src={img4}
+            alt="Egypt's Finest Produce - Slide 4"
+            className="d-block w-100 carousel-img"
+            loading="lazy"
+          />
+        </Carousel.Item>
       </Carousel>
-
       <div
         className="container text-center mt-5 mt-md-0"
         style={{
@@ -65,7 +72,7 @@ export const HeaderSection = () => {
           zIndex: "10",
         }}
       >
-        <div className="header-content">
+        <div className="header-content fade-in">
           <h1 className="home-heading text-white" style={{ maxWidth: "900px", margin: "auto" }}>
             {t(
               "header_main_heading",
@@ -75,7 +82,7 @@ export const HeaderSection = () => {
           <p className="home-description my-4 mx-auto text-white">
             {t(
               "header_description",
-              "At AHLAM, we specialize in exporting premium-quality fruits, vegetables, and frozen goods. With a strong focus on freshness, safety, and sustainability, we deliver nature's best—straight from Egyptian farms to global markets."
+              "At AHLAM, we specialize in exporting premium-quality fruits, vegetables, and frozen goods. With a strong focus on freshness, safety, and sustainability, we deliver nature's best straight from Egyptian farms to global markets."
             )}
           </p>
           <div className="header-btn d-flex justify-content-center align-items-center gap-3">
@@ -92,19 +99,12 @@ export const HeaderSection = () => {
                 {t("get_started_button", "Get Started")}
                 <img className="ms-2" width={4} height={15} src={threedots} alt="threedots-icon" />
               </Dropdown.Toggle>
-
               <Dropdown.Menu className="mt-2" style={{ backgroundColor: "var(--bg-color)" }}>
-                {" "}
                 <Dropdown.Item as={Link} to="/Supplier">
-                  {" "}
-                  {/* --- START: ترجمة As Supplier --- */}
                   {t("as_supplier_option", "As Supplier")}
-                  {/* --- END: ترجمة As Supplier --- */}
                 </Dropdown.Item>
                 <Dropdown.Item as={Link} to="/Products">
-                  {/* --- START: ترجمة As Buyer --- */}
                   {t("as_buyer_option", "As Buyer")}
-                  {/* --- END: ترجمة As Buyer --- */}
                 </Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>

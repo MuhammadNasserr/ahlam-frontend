@@ -790,6 +790,20 @@ footer {
 }
 
 /*---------- Header------------*/
+/* In your CSS file (e.g., HeaderSection.css) */
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.fade-in {
+  animation: fade-in 1s ease-in-out forwards;
+}
 header {
   position: relative;
 }
@@ -800,13 +814,11 @@ header .dropdown-toggle::after {
 
 .carousel-control-prev,
 .carousel-control-next {
-  display: none !important;
-  /* دي بتلغي إخفائهم بالـ JS بتاع react-bootstrap */
+z-index: 20;
 }
 
 .carousel-indicators {
-  display: none !important;
-  /* دي بتلغي إخفاء النقط */
+z-index: 20;
 }
 
 .btn-close {
